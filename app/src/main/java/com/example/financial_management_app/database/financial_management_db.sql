@@ -14,8 +14,8 @@ CREATE TABLE accounts (
 	id int AUTO_INCREMENT,
     user_id int,
     email varchar(255),
-    avatar_url varchar(255),
     password varchar(255),
+	avatar_url varchar(255),
     CONSTRAINT PK_accounts_id PRIMARY KEY(id)
 ) ENGINE = InnoDB;
 
