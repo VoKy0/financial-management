@@ -16,4 +16,11 @@
     <string name="menu_budget_ledger">Ngân sách</string>
     <string name="menu_dept_ledger">Sổ nợ</string>
     <string name="menu_utility">Tiện ích khác</string>
+    
+    <string name="signup">
+        <b><u>Đăng ký</u></b>
+    </string>
+    <string name="forgot_password">
+        <b><u>Quên mật khẩu</u></b>
+    </string>
 </resources>
