@@ -3,6 +3,7 @@ package com.example.financial_management_app.models;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -31,12 +32,15 @@ import java.util.Map;
 
 import javax.xml.transform.Result;
 
+import com.example.financial_management_app.utils.ConnectDB;
+
 public class Account {
     private int id = -1;
     private int user_id = -1;
     private String email = "";
     private String password = "";
     private String avatar_url = "";
+    private ConnectDB connectDB = new ConnectDB();
     private Connection conn;
 
     public Account(String email, String password) {
@@ -80,27 +84,12 @@ public class Account {
         return -1;
     }
 
-    private Connection getConnection() {
-        Connection connection = null;
-        String url = "jdbc:mysql://localhost:3306/financial_management_db";
-        String user = "fm_app";
-        String password = "123123";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-
-        return connection;
-    }
     public ResultSet findAccountFromDB(String email) {
         PreparedStatement preparedStatement = null;
         ResultSet res = null;
 
         try {
-            Connection conn = getConnection();
+            Connection conn = connectDB.getConnection();
 
             if (conn != null) {
                 String query = "SELECT email, password FROM accounts WHERE email=?";
@@ -121,7 +110,7 @@ public class Account {
         ResultSet res = null;
 
         try {
-            conn = getConnection();
+            conn = connectDB.getConnection();
             String query = "SELECT email FROM accounts";
             preparedStatement = conn.prepareStatement(query);
             res = preparedStatement.executeQuery();
@@ -137,7 +126,7 @@ public class Account {
         ResultSet res = null;
 
         try {
-            conn = getConnection();
+            conn = connectDB.getConnection();
             String query = "SELECT password FROM accounts";
             preparedStatement = conn.prepareStatement(query);
             res = preparedStatement.executeQuery();
@@ -154,7 +143,7 @@ public class Account {
         PreparedStatement preparedStatement = null;
 
         try {
-            conn = getConnection();
+            conn = connectDB.getConnection();
             String query = "INSERT INTO accounts(user_id, email, password, avatar_url) VALUES (?, ?, ?, ?)";
             preparedStatement = conn.prepareStatement(query);
 
@@ -177,7 +166,7 @@ public class Account {
         int max_uid = -1;
 
         try {
-            conn = getConnection();
+            conn = connectDB.getConnection();
             String query = "SELECT MAX(user_id) FROM accounts";
             preparedStatement = conn.prepareStatement(query);
             res = preparedStatement.executeQuery();

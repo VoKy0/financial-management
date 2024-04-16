@@ -12,7 +12,8 @@ CREATE TABLE users (
 
 CREATE TABLE accounts (
 	id int AUTO_INCREMENT,
-    user_id int,
+    user_id int,	
+    username varchar(255),
     email varchar(255),
     password varchar(255),
 	avatar_url varchar(255),
@@ -63,11 +64,22 @@ CREATE TABLE dept_ledgers (
     CONSTRAINT PK_dept_ledgers_id PRIMARY KEY(id, transaction_id)
 ) ENGINE = InnoDB;
 
+
+
 ALTER TABLE accounts ADD CONSTRAINT FK_accounts_and_users_on_user_id FOREIGN KEY(user_id) REFERENCES users(id);
+
+-- CHƯA RUN
 ALTER TABLE wallets ADD CONSTRAINT FK_wallets_and_accounts_on_account_id FOREIGN KEY(account_id) REFERENCES accounts(id);
 ALTER TABLE transactions ADD CONSTRAINT FK_transactions_and_accounts_on_account_id FOREIGN KEY(account_id) REFERENCES accounts(id);
 ALTER TABLE transaction_categories ADD CONSTRAINT FK_transaction_categories_and_transactions_on_transaction_id FOREIGN KEY(transaction_id) REFERENCES transactions(id);
 ALTER TABLE transaction_ledgers ADD CONSTRAINT FK_transaction_ledgers_and_transactions_on_transaction_id FOREIGN KEY(transaction_id) REFERENCES transactions(id);
 ALTER TABLE budget_ledgers ADD CONSTRAINT FK_budget_ledgers_and_transactions_on_transaction_id FOREIGN KEY(transaction_id) REFERENCES transactions(id);
 ALTER TABLE dept_ledgers ADD CONSTRAINT FK_dept_ledgers_and_transactions_on_transaction_id FOREIGN KEY(transaction_id) REFERENCES transactions(id);
+
+-- INSERT
+SELECT * FROM users;
+SELECT * FROM accounts;
+
+INSERT INTO users(first_name, last_name, dob, address) VALUES ("Vo", "Ky", "2003-10-09", "VN");
+INSERT INTO accounts(user_id, email, password) VALUES ("1", "voky@gmail.com", "123123123");
 

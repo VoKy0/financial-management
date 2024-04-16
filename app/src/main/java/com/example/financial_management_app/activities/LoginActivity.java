@@ -2,6 +2,7 @@ package com.example.financial_management_app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,9 +32,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword;
     private TextView errorPassword;
     private TextView forgotPassword;
-    private TextView loginNotifycation;
+    private TextView loginNotification;
     private Button btnLogin;
-    private Button btnSignup;
+    private TextView signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +45,17 @@ public class LoginActivity extends AppCompatActivity {
         errorEmail = findViewById(R.id.error_email);
         edtPassword = findViewById(R.id.edt_password);
         errorPassword = findViewById(R.id.error_password);
-        forgotPassword = findViewById(R.id.forget_password);
-        loginNotifycation = findViewById(R.id.login_notifycation);
+        forgotPassword = findViewById(R.id.forgot_password);
+        loginNotification = findViewById(R.id.login_notification);
         btnLogin = (Button) findViewById(R.id.btn_login);
-        btnSignup = (Button) findViewById(R.id.btn_signup);
+        signup = findViewById(R.id.signup);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
                 Account acc = new Account(email, password);
@@ -66,11 +70,11 @@ public class LoginActivity extends AppCompatActivity {
                     else {
                         switch (acc.checkAccount()) {
                             case -1:
-                                loginNotifycation.setText("Tài khoản không tồn tại.");
+                                loginNotification.setText("Tài khoản không tồn tại.");
                                 Log.i("Login", "Tài khoản không tồn tại.");
                                 break;
                             case 0:
-                                loginNotifycation.setText("Tài khoản hoặc mật khẩu không đúng.");
+                                loginNotification.setText("Tài khoản hoặc mật khẩu không đúng.");
                                 Log.i("Login", "Tài khoản hoặc mật khẩu không đúng.");
                                 break;
                             case 1:
