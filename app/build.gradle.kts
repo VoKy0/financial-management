@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(files("D:\\UIT\\Ky6\\Mobile\\Report\\financial-management\\app\\src\\main\\java\\com\\example\\financial_management_app\\libs\\mysql-connector-java-5.1.49.jar"))
+    implementation(libs.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

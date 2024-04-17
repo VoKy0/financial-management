@@ -5,7 +5,7 @@ CREATE TABLE users (
 	id int AUTO_INCREMENT,
     first_name varchar(255),
     last_name varchar(255),
-    dob datetime,
+    dob varchar(255),
     address varchar(255),
     CONSTRAINT PK_users_id PRIMARY KEY(id)
 ) ENGINE = InnoDB;
