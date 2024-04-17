@@ -53,8 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
 
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
@@ -88,5 +86,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void navigateToSignup(View v) {
+        Intent intent = new Intent(this, SignupActitvity.class);
+        startActivity(intent);
+    }
+    public void navigateToForgotPassword(View v) {
+        Intent intent = new Intent(this, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 }

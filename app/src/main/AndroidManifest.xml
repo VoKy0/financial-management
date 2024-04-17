@@ -15,13 +15,16 @@
         android:theme="@style/Theme.Financial_management_app"
         tools:targetApi="31">
         <activity
-            android:name=".activities.SignupActitvity"
-            android:label="Đăng ký"
+            android:name=".activities.ForgotPasswordActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.SignupActitvity"
+            android:exported="false"
+            android:label="Đăng ký" />
+        <activity
             android:name=".activities.LoginActivity"
-            android:label="Đăng nhập"
-            android:exported="true">
+            android:exported="true"
+            android:label="Đăng nhập">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

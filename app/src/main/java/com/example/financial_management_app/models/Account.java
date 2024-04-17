@@ -37,16 +37,23 @@ import com.example.financial_management_app.utils.ConnectDB;
 public class Account {
     private int id = -1;
     private int user_id = -1;
+    private String username = "";
     private String email = "";
     private String password = "";
     private String avatar_url = "";
     private ConnectDB connectDB = new ConnectDB();
-    private Connection conn;
+    private Connection conn = null;
 
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
     }
+    public Account(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -59,12 +66,20 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public boolean isValidUsername() {
+        return !username.isEmpty();
+    }
     public boolean isValidEmail() {
-         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
+         return !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
     public boolean isValidPassword() {
-        return !TextUtils.isEmpty(password) && password.length() > 6;
+        return !password.isEmpty() && password.length() > 6;
     }
+    public boolean isValidRePassword(String re_password) {
+        return password.equals(re_password);
+    }
+
     public int checkAccount() {
         try {
             ResultSet res = findAccountFromDB(email);
@@ -144,13 +159,13 @@ public class Account {
 
         try {
             conn = connectDB.getConnection();
-            String query = "INSERT INTO accounts(user_id, email, password, avatar_url) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO accounts(user_id, username, email, password) VALUES (?, ?, ?, ?)";
             preparedStatement = conn.prepareStatement(query);
 
             preparedStatement.setInt(1, user_id);
-            preparedStatement.setString(2, email);
-            preparedStatement.setString(3, password);
-            preparedStatement.setString(4, avatar_url);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, password);
 
             preparedStatement.executeUpdate();
             Log.i("Add Account","Add account successful.");
@@ -163,7 +178,7 @@ public class Account {
     public int getMaxUserID() {
         PreparedStatement preparedStatement = null;
         ResultSet res = null;
-        int max_uid = -1;
+        int max_uid = 0;
 
         try {
             conn = connectDB.getConnection();
