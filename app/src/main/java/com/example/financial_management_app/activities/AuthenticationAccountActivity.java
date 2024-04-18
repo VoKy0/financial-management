@@ -1,6 +1,8 @@
 package com.example.financial_management_app.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,5 +18,10 @@ public class AuthenticationAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication_account);
+    }
+
+    protected void navigateToChangePassword(View v) {
+        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        startActivity(intent);
     }
 }
