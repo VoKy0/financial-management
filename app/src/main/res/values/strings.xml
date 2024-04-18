@@ -26,4 +26,7 @@
     <string name="forgot_password">
         <b><u>Quên mật khẩu</u></b>
     </string>
+    <string name="resend_authentication_key">
+        <b><u>Gửi lại mã</u></b>
+    </string>
 </resources>
