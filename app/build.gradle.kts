@@ -40,9 +40,15 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    implementation(files("D:\\UIT\\Ky6\\Mobile\\Report\\financial-management\\app\\src\\main\\java\\com\\example\\financial_management_app\\libs\\mysql-connector-java-5.1.49.jar"))
     implementation(libs.activity)
+    implementation(libs.legacy.support.v4)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // implementation(files("D:\\UIT\\Ky6\\Mobile\\Report\\financial-management\\app\\src\\main\\java\\com\\example\\financial_management_app\\libs\\mysql-connector-java-5.1.49.jar"))
+    implementation("mysql:mysql-connector-java:5.1.49")
+
+    implementation("com.google.android.gms:play-services-auth:20.3.0")
+
 }
