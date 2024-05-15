@@ -17,6 +17,11 @@
     <string name="menu_dept_ledger">Sổ nợ</string>
     <string name="menu_utility">Tiện ích khác</string>
 
+    <string name="manage_account">Quản lý tài khoản</string>
+    <string name="export_pdf">Xuất pdf</string>
+    <string name="sign_out">Đăng xuất</string>
+
+
     <string name="signup">
         <b><u>Đăng ký</u></b>
     </string>

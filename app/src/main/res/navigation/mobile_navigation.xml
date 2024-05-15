@@ -22,4 +22,23 @@
         android:name="com.example.financial_management_app.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_transaction_ledger"
+        android:name="com.example.financial_management_app.fragments.TransactionLedgerFragment"
+        android:label="@string/menu_transaction_ledger"
+        tools:layout="@layout/fragment_transaction_ledger" />
+
+    <fragment
+        android:id="@+id/nav_wallet"
+        android:name="com.example.financial_management_app.fragments.WalletFragment"
+        android:label="@string/menu_wallet"
+        tools:layout="@layout/fragment_wallet" />
+
+    <fragment
+        android:id="@+id/nav_utility"
+        android:name="com.example.financial_management_app.fragments.UtilityFragment"
+        android:label="@string/menu_utility"
+        tools:layout="@layout/fragment_utility" />
+
 </navigation>
