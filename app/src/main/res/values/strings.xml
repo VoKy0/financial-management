@@ -21,6 +21,11 @@
     <string name="export_pdf">Xuất pdf</string>
     <string name="sign_out">Đăng xuất</string>
 
+    <string name="add_wallet">Thêm ví</string>
+    <string name="add_transaction">Thêm ví</string>
+
+    <string name="transaction">Giao dịch</string>
+    <string name="overview">Tổng quan</string>
 
     <string name="signup">
         <b><u>Đăng ký</u></b>

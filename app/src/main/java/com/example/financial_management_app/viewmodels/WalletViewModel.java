@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 public class WalletViewModel extends ViewModel {
     private MutableLiveData<List<Wallets>> walletItems;
     private ExecutorService executorService;

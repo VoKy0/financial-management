@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.example.financial_management_app.R;
 import com.example.financial_management_app.adapters.WalletAdapter;
 import com.example.financial_management_app.models.Wallets;
 import com.example.financial_management_app.viewmodels.WalletViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -40,7 +43,9 @@ public class WalletFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         listView = view.findViewById(R.id.wallet_list_view);
+        FloatingActionButton fab = view.findViewById(R.id.fab_wallet);
 
         mViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
 
@@ -49,6 +54,14 @@ public class WalletFragment extends Fragment {
             public void onChanged(List<Wallets> walletItems) {
                 walletAdapter = new WalletAdapter(getActivity(), walletItems);
                 listView.setAdapter(walletAdapter);
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+                navController.navigate(R.id.nav_add_wallet);
             }
         });
     }
