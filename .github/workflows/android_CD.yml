@@ -10,23 +10,26 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      # Bước 1: Đóng gói ứng dụng thành tệp APK
+      # Bước 1: Cấp quyền thực thi cho tệp gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # Bước 2: Xây dựng APK
       - name: Build APK
         run: ./gradlew assembleRelease
 
-      # Bước 2: Tải lên APK đã đóng gói lên một nơi nào đó, chẳng hạn như một máy chủ hoặc Google Play
+      # Bước 3: Tải lên APK đã xây dựng
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
           name: app-release
           path: app/build/outputs/apk/release/app-release.apk
 
-      # Bước 3: Triển khai ứng dụng đến một môi trường thử nghiệm hoặc sản xuất
-      # Đây là một ví dụ về cách triển khai ứng dụng lên Google Play Store
+      # Bước 4: Triển khai APK lên Google Play Store (ví dụ)
       - name: Deploy to Google Play
-        uses: r0adkll/upload-google-play@v1
+        uses: r0adkll/upload-google-play@v2
         with:
           serviceAccountJson: ${{ secrets.GOOGLE_PLAY_JSON }}
           packageName: com.example.myapp
