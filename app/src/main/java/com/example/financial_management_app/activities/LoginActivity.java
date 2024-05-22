@@ -38,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        long startTime = System.currentTimeMillis();
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -86,6 +89,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+        Log.d("Execution Time Login", "Thời gian thực thi của chức năng đăng nhập: " + executionTime + "ms");
     }
 
     public void navigateToSignup(View v) {

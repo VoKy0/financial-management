@@ -1,5 +1,7 @@
 package com.example.financial_management_app.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -29,9 +31,15 @@ public class TransactionViewModel extends ViewModel {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
+                long startTime = System.currentTimeMillis();
+
                 Transactions transactions = new Transactions();
                 List<Transactions> transactionList = transactions.getTransactionsFromDB();
                 transactionItems.postValue(transactionList);
+
+                long endTime = System.currentTimeMillis();
+                long executionTime = endTime - startTime;
+                Log.d("Execution Time Transaction - get", "Thời gian thực thi của truy vấn thông tin giao dịch: " + executionTime + "ms");
             }
         });
     }

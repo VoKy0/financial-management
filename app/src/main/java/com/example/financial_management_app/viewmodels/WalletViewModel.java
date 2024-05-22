@@ -1,5 +1,7 @@
 package com.example.financial_management_app.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -28,9 +30,15 @@ public class WalletViewModel extends ViewModel {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
+                long startTime = System.currentTimeMillis();
+
                 Wallets wallets = new Wallets();
                 List<Wallets> walletList = wallets.getWalletsFromDB();
                 walletItems.postValue(walletList);
+
+                long endTime = System.currentTimeMillis();
+                long executionTime = endTime - startTime;
+                Log.d("Execution Time Wallet - get", "Thời gian thực thi của truy vấn thông tin ví: " + executionTime + "ms");
             }
         });
     }
