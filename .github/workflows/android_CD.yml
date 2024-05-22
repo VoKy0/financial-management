@@ -3,6 +3,10 @@ name: Android CD
 on:
   push:
     branches: [ "main" ]
+  workflow_run:
+    workflows: ["Android CI"]
+    types:
+      - completed
 
 jobs:
   deploy:
@@ -12,22 +16,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Bước 1: Cấp quyền thực thi cho tệp gradlew
+      # Bước 1: Setup JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      # Bước 2: Grant execute permission for gradlew
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # Bước 2: Xây dựng APK
-      - name: Build APK
-        run: ./gradlew assembleRelease
-
-      # Bước 3: Tải lên APK đã xây dựng
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
+      # Bước 3: Download APK from CI
+      - name: Download APK from CI
+        uses: actions/download-artifact@v2
         with:
           name: app-release
-          path: app/build/outputs/apk/release/app-release.apk
+          path: app/build/outputs/apk/release
 
-      # Bước 4: Triển khai APK lên Google Play Store (ví dụ)
+      # Bước 4: Deploy APK (có thể sử dụng hành động upload-google-play@v1)
       - name: Deploy to Google Play
         uses: r0adkll/upload-google-play@v1
         with:
