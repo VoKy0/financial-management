@@ -216,7 +216,6 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="resendAuthenticationKey"
             android:text="@string/resend_authentication_key"
             android:textAlignment="textStart"
             android:textColor="#15CFCF"

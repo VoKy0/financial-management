@@ -1,12 +1,12 @@
-# Sử dụng image của OpenJDK làm nền tảng
-FROM openjdk:11
+# Sử dụng image của OpenJDK 17-slim làm nền tảng
+FROM openjdk:17-jdk-slim
 
 # Thiết lập biến môi trường cho Android SDK
 ENV ANDROID_SDK_ROOT /usr/local/android-sdk-linux
 
 # Cài đặt các gói cần thiết
 RUN apt-get update && \
-    apt-get install -y wget unzip && \
+    apt-get install -y wget unzip dos2unix && \
     rm -rf /var/lib/apt/lists/*
 
 # Tải và giải nén Android SDK Command Line Tools
@@ -30,8 +30,8 @@ COPY . /usr/src/app
 # Thiết lập thư mục làm việc
 WORKDIR /usr/src/app
 
-# Đảm bảo gradlew có quyền thực thi
-RUN chmod +x ./gradlew
+# Đảm bảo gradlew có quyền thực thi và chuyển đổi ký tự dòng mới
+RUN chmod +x ./gradlew && dos2unix ./gradlew
 
 # Lệnh để build ứng dụng
 CMD ./gradlew build
