@@ -34,4 +34,7 @@ WORKDIR /usr/src/app
 RUN chmod +x ./gradlew && dos2unix ./gradlew
 
 # Lệnh để build ứng dụng
-CMD ./gradlew build
+CMD ./gradlew assembleDebug
+
+## Lệnh để build ứng dụng
+#CMD ./gradlew build
