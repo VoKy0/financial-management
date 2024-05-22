@@ -35,6 +35,15 @@ public class WalletViewModel extends ViewModel {
         });
     }
 
+    private void CreateWallet() {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();

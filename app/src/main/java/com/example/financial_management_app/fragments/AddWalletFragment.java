@@ -1,6 +1,5 @@
 package com.example.financial_management_app.fragments;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -13,17 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.financial_management_app.R;
-import com.example.financial_management_app.adapters.WalletAdapter;
-import com.example.financial_management_app.models.Wallets;
-import com.example.financial_management_app.viewmodels.AddWalletViewModel;
-import com.example.financial_management_app.viewmodels.WalletViewModel;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
-import java.util.List;
+import com.example.financial_management_app.R;
+import com.example.financial_management_app.viewmodels.WalletViewModel;
 
 public class AddWalletFragment extends Fragment {
 
-    private AddWalletViewModel mViewModel;
+    private WalletViewModel mViewModel;
+    private EditText edt_wallet_name;
+    private Spinner spn_wallet_type;
+    private Button btn_create_wallet;
+    private TextView res;
+
 
     public static AddWalletFragment newInstance() {
         return new AddWalletFragment();
@@ -38,6 +42,27 @@ public class AddWalletFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        edt_wallet_name = view.findViewById(R.id.edt_wallet_name);
+        spn_wallet_type = view.findViewById(R.id.spn_wallet_type);
+        btn_create_wallet = (Button) view.findViewById(R.id.btn_create_wallet);
+
+        mViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
+
+        res = view.findViewById(R.id.tv_res);
+
+        btn_create_wallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String wallet_name = edt_wallet_name.getText().toString();
+                String wallet_type = spn_wallet_type.getSelectedItem().toString();
+
+                res.setText("Tên ví: " + wallet_name + "\nLoại ví: " + wallet_type);
+                res.setVisibility(View.VISIBLE);
+
+
+            }
+        });
     }
 
 }
