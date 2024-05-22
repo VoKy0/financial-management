@@ -29,7 +29,7 @@ jobs:
 
       # Bước 4: Triển khai APK lên Google Play Store (ví dụ)
       - name: Deploy to Google Play
-        uses: r0adkll/upload-google-play@v2
+        uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: ${{ secrets.GOOGLE_PLAY_JSON }}
           packageName: com.example.myapp
