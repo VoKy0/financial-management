@@ -26,7 +26,7 @@ jobs:
       # Bước 3: Triển khai ứng dụng đến một môi trường thử nghiệm hoặc sản xuất
       # Đây là một ví dụ về cách triển khai ứng dụng lên Google Play Store
       - name: Deploy to Google Play
-        uses: r0adkll/upload-google-play@v2
+        uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: ${{ secrets.GOOGLE_PLAY_JSON }}
           packageName: com.example.myapp
