@@ -442,7 +442,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="navigateToSignin"
+                android:onClick="navigateToLogin"
                 android:text="@string/login"
                 android:textAlignment="textStart"
                 android:textColor="#15CFCF"

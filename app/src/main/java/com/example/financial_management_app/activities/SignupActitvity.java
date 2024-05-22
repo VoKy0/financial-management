@@ -11,11 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.financial_management_app.MainActivity;
 import com.example.financial_management_app.R;
 import com.example.financial_management_app.models.Account;
-import com.example.financial_management_app.models.User;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.example.financial_management_app.models.Users;
 
 public class SignupActitvity extends AppCompatActivity {
     private EditText edt_first_name;
@@ -47,7 +43,6 @@ public class SignupActitvity extends AppCompatActivity {
         btn_login_fb = (Button) findViewById(R.id.btn_login_fb);
         btn_login_google = (Button) findViewById(R.id.btn_login_google);
 
-
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +68,7 @@ public class SignupActitvity extends AppCompatActivity {
                 String address = edt_address.getText().toString();
 
                 Account acc = new Account(username, email, password);
-                User user = new User(first_name, last_name, dob, address);
+                Users user = new Users(first_name, last_name, dob, address);
 
                 if (user.isValidFirstName() &&
                     user.isValidLastName() &&
@@ -118,7 +113,6 @@ public class SignupActitvity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void navigateToLogin(View v) {

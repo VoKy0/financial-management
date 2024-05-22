@@ -21,7 +21,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
     }
 
-    protected void navigateToHome(View v) {
+    public void navigateToLogin(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+    public void navigateToHome(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
