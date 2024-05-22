@@ -1,0 +1,34 @@
+name: Android CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Bước 1: Đóng gói ứng dụng thành tệp APK
+      - name: Build APK
+        run: ./gradlew assembleRelease
+
+      # Bước 2: Tải lên APK đã đóng gói lên một nơi nào đó, chẳng hạn như một máy chủ hoặc Google Play
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: app/build/outputs/apk/release/app-release.apk
+
+      # Bước 3: Triển khai ứng dụng đến một môi trường thử nghiệm hoặc sản xuất
+      # Đây là một ví dụ về cách triển khai ứng dụng lên Google Play Store
+      - name: Deploy to Google Play
+        uses: r0adkll/upload-google-play@v2
+        with:
+          serviceAccountJson: ${{ secrets.GOOGLE_PLAY_JSON }}
+          packageName: com.example.myapp
+          apkFiles: app/build/outputs/apk/release/app-release.apk
+          track: internal
