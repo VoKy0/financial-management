@@ -153,6 +153,28 @@ public class Account {
         return res;
     }
 
+    public int getMaxUserID() {
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+        int max_uid = 0;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT MAX(user_id) FROM accounts";
+            preparedStatement = conn.prepareStatement(query);
+            res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                max_uid = res.getInt("user_id");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return max_uid;
+    }
+
     public void addAccount() {
         user_id = getMaxUserID() + 1;
         PreparedStatement preparedStatement = null;
@@ -175,25 +197,5 @@ public class Account {
         }
     }
 
-    public int getMaxUserID() {
-        PreparedStatement preparedStatement = null;
-        ResultSet res = null;
-        int max_uid = 0;
 
-        try {
-            conn = connectDB.getConnection();
-            String query = "SELECT MAX(user_id) FROM accounts";
-            preparedStatement = conn.prepareStatement(query);
-            res = preparedStatement.executeQuery();
-
-            if (res.next()) {
-                max_uid = res.getInt("user_id");
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return max_uid;
-    }
 }

@@ -33,6 +33,7 @@ public class Wallets {
         this.name = name;
         this.balance = balance;
     }
+
     public Wallets(int id, int account_id, String name, Double balance) {
         super();
         this.id = id;

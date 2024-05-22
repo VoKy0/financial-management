@@ -6,19 +6,29 @@ import com.example.financial_management_app.utils.ConnectDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class User {
-    private int id = -1;
-    private String first_name = "";
-    private String last_name = "";
-    private String dob = null;
-    private String address = "";
-    private ConnectDB connectDB = new ConnectDB();
-    private Connection conn = null;
+public class Users {
+    private int id;
+    private String first_name;
+    private String last_name;
+    private String dob;
+    private String address;
+    private ConnectDB connectDB;
+    private Connection conn;
 
-    public User(String first_name, String last_name, String dob, String address) {
+    public Users() {
+        id = -1;
+        first_name = "";
+        last_name = "";
+        dob = "";
+        address = "";
+        connectDB = new ConnectDB();
+        conn = null;
+    }
+
+    public Users(String first_name, String last_name, String dob, String address) {
+        super();
         this.first_name = first_name;
         this.last_name = last_name;
         this.dob = dob;
