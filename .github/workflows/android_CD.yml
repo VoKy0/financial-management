@@ -21,19 +21,24 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'adopt'
 
       # Bước 2: Grant execute permission for gradlew
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      # Bước 3: Download APK from CI
+      # Bước 3: Run ./gradlew assembleRelease
+      - name: Build APK
+        run: ./gradlew assembleRelease
+
+      # Bước 4: Download APK from CI
       - name: Download APK from CI
         uses: actions/download-artifact@v2
         with:
           name: app-release
           path: app/build/outputs/apk/release
 
-      # Bước 4: Deploy APK (có thể sử dụng hành động upload-google-play@v1)
+      # Bước 5: Deploy APK (có thể sử dụng hành động upload-google-play@v1)
       - name: Deploy to Google Play
         uses: r0adkll/upload-google-play@v1
         with:
