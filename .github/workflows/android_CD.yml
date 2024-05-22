@@ -1,37 +1,28 @@
-name: Android CI/CD
+name: Android CD
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["Android CI"]
+    branches:
+      - main
+    types:
+      - completed
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: gradle
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew assembleDebug
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
+
     steps:
-    - name: Install Firebase CLI
-      run: npm install -g firebase-tools
-    - name: Authenticate with Firebase
-      run: firebase login --no-interactive --token "${{ secrets.FIREBASE_TOKEN }}"
-    - name: Deploy to Firebase
-      run: firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Authenticate with Firebase
+        run: firebase login:ci --token "${{ secrets.FIREBASE_TOKEN }}"
+
+      - name: Deploy to Firebase
+        run: |
+          ./gradlew assembleRelease
+          firebase deploy --only hosting --token "${{ secrets.FIREBASE_TOKEN }}"
