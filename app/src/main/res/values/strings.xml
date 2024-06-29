@@ -5,24 +5,25 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Cài đặt</string>
 
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="menu_home">Trang chủ</string>
     <string name="menu_wallet">Ví</string>
-    <string name="menu_transaction_ledger">Sổ giao dịch</string>
+    <string name="menu_transaction_ledger">Giao dịch</string>
     <string name="menu_budget_ledger">Ngân sách</string>
     <string name="menu_dept_ledger">Sổ nợ</string>
     <string name="menu_utility">Tiện ích khác</string>
 
-    <string name="manage_account">Quản lý tài khoản</string>
+    <string name="manage_account">Hồ sơ</string>
     <string name="export_pdf">Xuất pdf</string>
     <string name="sign_out">Đăng xuất</string>
 
     <string name="add_wallet">Thêm ví</string>
-    <string name="add_transaction">Thêm ví</string>
+    <string name="add_budget">Thêm ngân sách</string>
+    <string name="add_transaction">Thêm giao dịch</string>
 
     <string name="transaction">Giao dịch</string>
     <string name="overview">Tổng quan</string>

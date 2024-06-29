@@ -57,8 +57,12 @@ CREATE TABLE transaction_ledgers (
 
 CREATE TABLE budget_ledgers (
 	id int AUTO_INCREMENT,
-    transaction_id int,
-    CONSTRAINT PK_budget_ledgers_id PRIMARY KEY(id, transaction_id)
+    account_id int,
+    name varchar(255),
+    amount double,o
+    note text,
+    budget_date datetime,
+    CONSTRAINT PK_budget_ledgers_id PRIMARY KEY(id)
 ) ENGINE = InnoDB;
 
 CREATE TABLE dept_ledgers (
@@ -92,7 +96,7 @@ VALUES 	(1, "Checking Account", "vi1", "100"),
         
 SELECT * FROM transactions;
 SELECT * FROM wallets;
-
+SELECT * FROM budget_ledgers;
 
 DROP TABLE wallets;
 
@@ -104,4 +108,7 @@ INSERT INTO transactions (account_id, transaction_date, amount, note) VALUES
 (4, "2024-05-05 19:00:00", -75.00, "Dinner at Restaurant"),
 (5, "2024-05-06 10:00:00", -120.00, "Public Transport Pass");
 
+INSERT INTO budget_ledgers(account_id, name, amount, note, budget_date)
+VALUES ("1", "Ăn uống", "50000", "Note", "2024-05-05"),
+	   ("2", "Tiền nhà", "50000", "Note", "2024-05-05"),
 

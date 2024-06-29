@@ -81,4 +81,14 @@
         android:label="@string/menu_budget_ledger"
         tools:layout="@layout/fragment_budget_ledger" />
 
+    <fragment
+        android:id="@+id/nav_add_budget"
+        android:name="com.example.financial_management_app.fragments.AddBudgetFragment"
+        android:label="@string/add_budget"
+        tools:layout="@layout/fragment_add_budget">
+        <action
+            android:id="@+id/action_AddBudgetFragment_to_BudgetLedgerFragment"
+            app:destination="@id/nav_budget_ledger" />
+    </fragment>
+
 </navigation>
