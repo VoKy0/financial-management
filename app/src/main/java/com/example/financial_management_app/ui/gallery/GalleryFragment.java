@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.financial_management_app.databinding.FragmentGalleryBinding;
 
+
 public class GalleryFragment extends Fragment {
 
     private FragmentGalleryBinding binding;

@@ -45,7 +45,11 @@
         android:id="@+id/nav_add_wallet"
         android:name="com.example.financial_management_app.fragments.AddWalletFragment"
         android:label="@string/add_wallet"
-        tools:layout="@layout/fragment_add_wallet" />
+        tools:layout="@layout/fragment_add_wallet">
+        <action
+            android:id="@+id/action_AddWalletFragment_to_WalletFragment"
+            app:destination="@id/nav_wallet" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_add_transaction"
@@ -70,5 +74,11 @@
         android:name="com.example.financial_management_app.fragments.ProfileFragment"
         android:label="@string/manage_account"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_budget_ledger"
+        android:name="com.example.financial_management_app.fragments.BudgetLedgerFragment"
+        android:label="@string/menu_budget_ledger"
+        tools:layout="@layout/fragment_budget_ledger" />
 
 </navigation>

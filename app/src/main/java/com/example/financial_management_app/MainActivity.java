@@ -1,8 +1,10 @@
 package com.example.financial_management_app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -45,12 +47,25 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_transaction_ledger, R.id.nav_utility, R.id.nav_profile)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_transaction_ledger, R.id.nav_utility, R.id.nav_profile, R.id.nav_budget_ledger)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        // Lấy thông tin người dùng từ SharedPreferences
+        SharedPreferences sharedPref = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String name = sharedPref.getString("name", "User Name");
+        String email = sharedPref.getString("email", "user@example.com");
+
+        // Cập nhật thông tin người dùng trong Navigation Drawer Header
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = headerView.findViewById(R.id.tv_menu_name);
+        TextView navUserEmail = headerView.findViewById(R.id.tv_menu_email);
+
+        navUsername.setText(name);
+        navUserEmail.setText(email);
     }
 
     @Override

@@ -27,6 +27,27 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_wallet_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="Loại ví:" />
+
+        <Spinner
+            android:id="@+id/spn_wallet_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/wallet_categories"
+            android:prompt="@string/select_wallet_type" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,18 +56,18 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_wallet_type"
+            android:id="@+id/tv_wallet_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="Loại ví:" />
+            android:layout_marginRight="10dp"
+            android:text="Số tiền:" />
 
-        <Spinner
-            android:id="@+id/spn_wallet_type"
+        <EditText
+            android:id="@+id/edt_wallet_balance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/wallet_types"
-            android:prompt="@string/select_wallet_type" />
+            android:hint="0 đ"
+            android:inputType="number" />
 
     </LinearLayout>
 

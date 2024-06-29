@@ -54,11 +54,20 @@ public class Account {
         this.password = password;
     }
 
+    public int getID() {
+        return id;
+    }
+    public String getUsername() {
+        return username;
+    }
     public String getEmail() {
         return email;
     }
     public String getPassword() {
         return password;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
     public void setEmail(String email) {
         this.email = email;
@@ -74,7 +83,7 @@ public class Account {
          return !email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
     public boolean isValidPassword() {
-        return !password.isEmpty() && password.length() > 6;
+        return !password.isEmpty() && password.length() >= 7;
     }
     public boolean isValidRePassword(String re_password) {
         return password.equals(re_password);
@@ -95,6 +104,7 @@ public class Account {
         catch (SQLException e) {
             e.printStackTrace();
         }
+
         // Có lỗi xảy ra hoặc là không tồn tại tài khoản
         return -1;
     }
@@ -120,6 +130,31 @@ public class Account {
         return res;
     }
 
+    public int getIDFromDBByEmail(String email) {
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+        int account_id = -1;
+
+        try {
+            Connection conn = connectDB.getConnection();
+
+            if (conn != null) {
+                String query = "SELECT id FROM accounts WHERE email=?";
+                preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, email);
+                res = preparedStatement.executeQuery();
+            }
+
+            if (res.next()) {
+                account_id = res.getInt("id");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return account_id;
+    }
     public ResultSet getEmailFromDB() {
         PreparedStatement preparedStatement = null;
         ResultSet res = null;

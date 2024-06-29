@@ -15,10 +15,13 @@ import java.util.concurrent.Executors;
 public class WalletViewModel extends ViewModel {
     private MutableLiveData<List<Wallets>> walletItems;
     private ExecutorService executorService;
+    private MutableLiveData<Boolean> walletAdded;
+
 
     public WalletViewModel() {
         walletItems = new MutableLiveData<>();
         executorService = Executors.newSingleThreadExecutor();
+        walletAdded = new MutableLiveData<>(false);
         loadWalletItems();
     }
 
@@ -26,7 +29,11 @@ public class WalletViewModel extends ViewModel {
         return walletItems;
     }
 
-    private void loadWalletItems() {
+    public LiveData<Boolean> getWalletAdded() {
+        return walletAdded;
+    }
+
+    public void loadWalletItems() {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -43,15 +50,24 @@ public class WalletViewModel extends ViewModel {
         });
     }
 
-    private void CreateWallet() {
+    public void createWallet(int account_id, String name, String category, Double balance) {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
+                Wallets wallets = new Wallets(account_id, name, category, balance);
+                wallets.addWallet();
 
+                // Cập nhật danh sách ví sau khi thêm ví mới
+                loadWalletItems();
+
+                // Đánh dấu rằng ví đã được thêm
+                walletAdded.postValue(true);
             }
         });
     }
-
+    public void resetWalletAdded() {
+        walletAdded.setValue(false);
+    }
     @Override
     protected void onCleared() {
         super.onCleared();

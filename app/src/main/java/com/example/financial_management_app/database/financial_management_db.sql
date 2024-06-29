@@ -24,10 +24,13 @@ CREATE TABLE wallets (
 	id int AUTO_INCREMENT,
 	account_id int,
     name varchar(255),
+    category varchar(255),
+    balance double,
     CONSTRAINT PK_wallets_id PRIMARY KEY(id)
 ) ENGINE = InnoDB;
 
 -- Xem xét lại khóa ngoại bảng này: zo account hay wallet
+DROP TABLE transactions;
 CREATE TABLE transactions (
 	id int AUTO_INCREMENT,
     account_id int,
@@ -42,7 +45,7 @@ CREATE TABLE transaction_categories (
     transaction_id int,
     category varchar(255),
     img_url varchar(255),
-    CONSTRAINT PK_transaction_categories_id PRIMARY KEY(id)
+    CONSTRAINT PK_transaction_categories_id PRIMARY KEY(id, transaction_id)
 ) ENGINE = InnoDB;
 
 -- XEM LAI: CÓ NÊN GỌP 3 ledgers lại vs nhau ?
@@ -81,5 +84,24 @@ SELECT * FROM users;
 SELECT * FROM accounts;
 
 INSERT INTO users(first_name, last_name, dob, address) VALUES ("Vo", "Ky", "2003-10-09", "VN");
-INSERT INTO accounts(user_id, email, password) VALUES ("1", "voky@gmail.com", "123123123");
+INSERT INTO accounts(user_id, username, email, password) VALUES ("1", "voky", "voky@gmail.com", "123123123");
+
+INSERT INTO wallets (account_id, name, category, balance)
+VALUES 	(1, "Checking Account", "vi1", "100"),
+		(1, "Savings Account", "vi2", "100");
+        
+SELECT * FROM transactions;
+SELECT * FROM wallets;
+
+
+DROP TABLE wallets;
+
+INSERT INTO transactions (account_id, transaction_date, amount, note) VALUES
+(1, "2024-05-01 12:30:00", -50.00, "Groceries at Supermarket"),
+(1, "2024-05-02 08:00:00", 1500.00, "Salary Deposit"),
+(2, "2024-05-03 14:00:00", -200.00, "New Shoes Purchase"),
+(3, "2024-05-04 09:30:00", 2500.00, "Investment Fund Deposit"),
+(4, "2024-05-05 19:00:00", -75.00, "Dinner at Restaurant"),
+(5, "2024-05-06 10:00:00", -120.00, "Public Transport Pass");
+
 
