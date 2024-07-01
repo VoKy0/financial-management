@@ -14,6 +14,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            tools:ignore="MissingConstraints">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                android:src="@drawable/ic_back" />
+
+        </androidx.appcompat.widget.Toolbar>
+
         <TextView
             android:id="@+id/logo_text"
             android:layout_width="0dp"
@@ -363,13 +382,13 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_border"
+            android:background="@drawable/btn_login_background"
             android:text="Đăng ký"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -390,7 +409,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_fb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -398,11 +417,14 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:text="Đăng nhập với Facebook"
+            android:textColor="@android:color/holo_blue_dark"
+            android:background="@drawable/btn_fb_background"
+            android:drawableStart="@drawable/ic_facebook"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lb_method_login" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -410,6 +432,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:text="Đăng nhập với Google"
+            android:textColor="@android:color/holo_red_light"
+            android:background="@drawable/btn_gg_background"
+            android:drawableStart="@drawable/ic_google"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_login_fb" />
