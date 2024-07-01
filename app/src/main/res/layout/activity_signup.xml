@@ -53,7 +53,7 @@
             android:layout_margin="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_menu_camera"
+            app:srcCompat="@drawable/ic_money"
             tools:layout_editor_absoluteX="351dp"
             tools:layout_editor_absoluteY="0dp" />
 
