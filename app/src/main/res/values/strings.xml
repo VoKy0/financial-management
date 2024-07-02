@@ -25,6 +25,10 @@
     <string name="add_budget">Thêm ngân sách</string>
     <string name="add_transaction">Thêm giao dịch</string>
 
+    <string name="wallet_detail">Thông tin ví</string>
+
+    <string name="edit_wallet">Sửa ví</string>
+
     <string name="transaction">Giao dịch</string>
     <string name="overview">Tổng quan</string>
 
@@ -42,4 +46,6 @@
     </string>
 
     <string name="select_wallet_type">Chọn loại ví</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

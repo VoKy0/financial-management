@@ -57,6 +57,13 @@ public class WalletFragment extends Fragment {
             }
         });
 
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            Wallets selectedWallet = (Wallets) walletAdapter.getItem(position);
+            Bundle bundle = new Bundle();
+            bundle.putInt("wallet_id", selectedWallet.getID());
+            Navigation.findNavController(view).navigate(R.id.action_WalletFragment_to_WalletDetailFragment, bundle);
+        });
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

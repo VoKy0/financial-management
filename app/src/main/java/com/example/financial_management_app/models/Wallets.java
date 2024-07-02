@@ -127,6 +127,33 @@ public class Wallets {
         return walletItems;
     }
 
+    public Wallets getWalletById(int id) {
+        Wallets wallet = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT id, account_id, name, category, balance FROM wallets WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                int walletId = res.getInt("id");
+                int accountId = res.getInt("account_id");
+                String name = res.getString("name");
+                String category = res.getString("category");
+                Double balance = res.getDouble("balance");
+                wallet = new Wallets(walletId, accountId, name, category, balance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return wallet;
+    }
+
     public void addWallet() {
         PreparedStatement preparedStatement = null;
 
@@ -147,4 +174,25 @@ public class Wallets {
             e.printStackTrace();
         }
     }
+
+    public void updateWallet(Wallets wallet) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "UPDATE wallets SET name = ?, category = ?, balance = ? WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+
+            preparedStatement.setString(1, wallet.getName());
+            preparedStatement.setString(2, wallet.getCategory());
+            preparedStatement.setDouble(3, wallet.getBalance());
+            preparedStatement.setInt(4, wallet.getID());
+
+            preparedStatement.executeUpdate();
+            Log.i("Update Wallet", "Update wallet successful.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
