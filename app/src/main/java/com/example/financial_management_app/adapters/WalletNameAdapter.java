@@ -1,7 +1,5 @@
 package com.example.financial_management_app.adapters;
 
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +12,11 @@ import com.example.financial_management_app.models.Wallets;
 
 import java.util.List;
 
-public class WalletAdapter extends BaseAdapter {
+public class WalletNameAdapter extends BaseAdapter {
     private Context context;
     private List<Wallets> wallet;
 
-    public WalletAdapter(Context context, List<Wallets> wallet) {
+    public WalletNameAdapter(Context context, List<Wallets> wallet) {
         this.context = context;
         this.wallet = wallet;
     }
@@ -41,16 +39,12 @@ public class WalletAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.wallet_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.spn_wallet_name, parent, false);
         }
 
         Wallets wallet = (Wallets) getItem(position);
-
         TextView nameTextView = convertView.findViewById(R.id.wallet_item_name);
-        TextView balanceTextView = convertView.findViewById(R.id.wallet_item_balance);
-
         nameTextView.setText(wallet.getName());
-        balanceTextView.setText(String.valueOf(wallet.getBalance()));
 
         return convertView;
     }

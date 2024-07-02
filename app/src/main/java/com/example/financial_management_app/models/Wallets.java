@@ -52,6 +52,9 @@ public class Wallets {
         this.balance = balance;
     }
 
+    public int getID() {
+        return id;
+    }
     public String getName() {
         return name;
     }
@@ -81,6 +84,32 @@ public class Wallets {
             conn = connectDB.getConnection();
             String query = "SELECT id, account_id, name, category, balance FROM wallets";
             preparedStatement = conn.prepareStatement(query);
+            res = preparedStatement.executeQuery();
+
+            while (res.next()) {
+                int id = res.getInt("id");
+                int account_id = res.getInt("account_id");
+                String name = res.getString("name");
+                String category = res.getString("category");
+                Double balance = res.getDouble("balance");
+                walletItems.add(new Wallets(id, account_id, name, category, balance));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return walletItems;
+    }
+    public List<Wallets> getWalletsByAccountID(int input_account_id) {
+        List<Wallets> walletItems = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT id, account_id, name, category, balance FROM wallets WHERE account_id = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, input_account_id);
             res = preparedStatement.executeQuery();
 
             while (res.next()) {

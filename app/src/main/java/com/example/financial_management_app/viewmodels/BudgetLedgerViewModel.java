@@ -53,11 +53,11 @@ public class BudgetLedgerViewModel extends ViewModel {
         });
     }
 
-    public void createBudget(int account_id, String name, String note, Double amount, Date budget_date) {
+    public void createBudget(int account_id, int wallet_id, String name, Double amount, String note, Date budget_date) {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                Budgets budget = new Budgets(account_id, name, note, amount, budget_date);
+                Budgets budget = new Budgets(account_id, wallet_id, name, amount, note, budget_date);
                 budget.addBudget();
 
                 // Cập nhật danh sách ví sau khi thêm ví mới

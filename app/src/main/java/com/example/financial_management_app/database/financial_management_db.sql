@@ -108,7 +108,10 @@ INSERT INTO transactions (account_id, transaction_date, amount, note) VALUES
 (4, "2024-05-05 19:00:00", -75.00, "Dinner at Restaurant"),
 (5, "2024-05-06 10:00:00", -120.00, "Public Transport Pass");
 
-INSERT INTO budget_ledgers(account_id, name, amount, note, budget_date)
-VALUES ("1", "Ăn uống", "50000", "Note", "2024-05-05"),
-	   ("2", "Tiền nhà", "50000", "Note", "2024-05-05"),
+INSERT INTO budget_ledgers(account_id, wallet_id, name, amount, note, budget_date)
+VALUES ("1", "1", "Ăn uống", "50000", "Note", "2024-05-05"),
+	   ("1", "2", "Tiền nhà", "50000", "Note", "2024-05-05"),
+	   ("2", "3", "Tiền nhà", "50000", "Note", "2024-05-05");
+       ("1", "4", "vi3", "50000", "Note", "2024-05-05"),
+       ("1", "5", "vi4", "50000", "Note", "2024-05-05"),
 

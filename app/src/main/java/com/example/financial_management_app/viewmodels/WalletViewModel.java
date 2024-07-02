@@ -50,6 +50,23 @@ public class WalletViewModel extends ViewModel {
         });
     }
 
+    public void loadWalletItems(int account_id) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                long startTime = System.currentTimeMillis();
+
+                Wallets wallets = new Wallets();
+                List<Wallets> walletList = wallets.getWalletsByAccountID(account_id);
+                walletItems.postValue(walletList);
+
+                long endTime = System.currentTimeMillis();
+                long executionTime = endTime - startTime;
+                Log.d("Execution Time Wallet - get", "Thời gian thực thi của truy vấn thông tin ví: " + executionTime + "ms");
+            }
+        });
+    }
+
     public void createWallet(int account_id, String name, String category, Double balance) {
         executorService.execute(new Runnable() {
             @Override
