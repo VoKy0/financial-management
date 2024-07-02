@@ -232,5 +232,32 @@ public class Account {
         }
     }
 
+    public Users getUserInfo() {
+        Users user = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
 
+        try {
+            Connection conn = connectDB.getConnection();
+            if (conn != null) {
+                String query = "SELECT * FROM users WHERE email=?";
+                preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, email);
+                res = preparedStatement.executeQuery();
+
+                if (res.next()) {
+                    user = new Users(
+                            res.getString("first_name"),
+                            res.getString("last_name"),
+                            res.getString("dob"),
+                            res.getString("address")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
 }

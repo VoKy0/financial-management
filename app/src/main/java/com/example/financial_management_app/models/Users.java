@@ -27,14 +27,18 @@ public class Users {
         conn = null;
     }
 
-    public Users(String first_name, String last_name, String dob, String address) {
+    public Users(int id, String first_name, String last_name, String dob, String address) {
         super();
+        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.dob = dob;
         this.address = address;
     }
 
+    public int getID() {
+        return id;
+    }
     public String getFirstName() {
         return first_name;
     }
@@ -93,6 +97,28 @@ public class Users {
         catch (SQLException e) {
             e.printStackTrace();
             Log.e("Add User", "Insert user into database failure.");
+        }
+    }
+
+    public void updateUser(int userID) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "UPDATE users SET first_name=?, last_name=?, dob=?, address=? WHERE id=?";
+            preparedStatement = conn.prepareStatement(query);
+
+            preparedStatement.setString(1, first_name);
+            preparedStatement.setString(2, last_name);
+            preparedStatement.setString(3, dob);
+            preparedStatement.setString(4, address);
+            preparedStatement.setInt(5, userID);
+
+            preparedStatement.executeUpdate();
+            Log.i("Update User", "Update user in database successful.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Log.e("Update User", "Update user in database failure.");
         }
     }
 }
