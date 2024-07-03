@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.financial_management_app.models.Budgets;
+import com.example.financial_management_app.models.Wallets;
 
 import java.sql.Date;
 import java.util.List;
@@ -37,13 +38,17 @@ public class BudgetLedgerViewModel extends ViewModel {
     }
 
     public void loadBudgetItems() {
+
+    }
+
+    public void loadBudgetItems(int account_id) {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 long startTime = System.currentTimeMillis();
 
                 Budgets budgets = new Budgets();
-                List<Budgets> budgetList = budgets.getBudgetsFromDB();
+                List<Budgets> budgetList = budgets.getBudgetsByAccountID(account_id);
                 budgetItems.postValue(budgetList);
 
                 long endTime = System.currentTimeMillis();

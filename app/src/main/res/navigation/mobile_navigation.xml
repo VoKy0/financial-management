@@ -83,7 +83,11 @@
         android:id="@+id/nav_budget_ledger"
         android:name="com.example.financial_management_app.fragments.BudgetLedgerFragment"
         android:label="@string/menu_budget_ledger"
-        tools:layout="@layout/fragment_budget_ledger" />
+        tools:layout="@layout/fragment_budget_ledger">
+        <action
+            android:id="@+id/action_BudgetLedgerFragment_to_BudgetDetailFragment"
+            app:destination="@id/nav_budget_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_add_budget"
@@ -113,5 +117,24 @@
         android:name="com.example.financial_management_app.fragments.EditWalletFragment"
         android:label="@string/edit_wallet"
         tools:layout="@layout/fragment_edit_wallet" />
+
+    <fragment
+        android:id="@+id/nav_budget_detail"
+        android:name="com.example.financial_management_app.fragments.BudgetDetailFragment"
+        android:label="@string/budget_detail"
+        tools:layout="@layout/fragment_budget_detail">
+        <argument
+            android:name="budget_id"
+            app:argType="integer"/>
+        <action
+            android:id="@+id/action_BudgetDetailFragment_to_EditBudgetFragment"
+            app:destination="@id/nav_edit_budget"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_budget"
+        android:name="com.example.financial_management_app.fragments.EditBudgetFragment"
+        android:label="@string/edit_budget"
+        tools:layout="@layout/fragment_edit_budget" />
 
 </navigation>

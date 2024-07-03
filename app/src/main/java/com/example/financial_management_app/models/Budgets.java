@@ -52,6 +52,12 @@ public class Budgets {
         this.id = id;
     }
 
+    public int getID() {
+        return id;
+    }
+    public int getWalletID() {
+        return wallet_id;
+    }
     public String getName() {
         return name;
     }
@@ -61,7 +67,13 @@ public class Budgets {
     public Double getAmount() {
         return amount;
     }
+    public Date getBudgetDate() {
+        return budget_date;
+    }
 
+    public void setWalletID(int wallet_id) {
+        this.wallet_id = wallet_id;
+    }
     public void setName(String name) {
         this.name = name;
     }
@@ -71,7 +83,32 @@ public class Budgets {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
+    public void setBudgetDate(Date budget_date) {
+        this.budget_date = budget_date;
+    }
 
+    public String getWalletName(int wallet_id) {
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+        String wallet_name = "";
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT name FROM wallets WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, wallet_id);
+            res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                wallet_name = res.getString("name");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return wallet_name;
+    }
     public List<Budgets> getBudgetsFromDB() {
         List<Budgets> budgetItems = new ArrayList<>();
         PreparedStatement preparedStatement = null;
@@ -128,6 +165,35 @@ public class Budgets {
         return budgetItems;
     }
 
+    public Budgets getBudgetByID(int budget_id) {
+        Budgets budget = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT id, account_id, wallet_id, name, amount, note, budget_date FROM budget_ledgers WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, budget_id);
+            res = preparedStatement.executeQuery();
+
+            while (res.next()) {
+                int id = res.getInt("id");
+                int account_id = res.getInt("account_id");
+                int wallet_id = res.getInt("wallet_id");
+                String name = res.getString("name");
+                Double amount = res.getDouble("amount");
+                String note = res.getString("note");
+                Date budget_date = res.getDate("budget_date");
+                budget = new Budgets(id, account_id, wallet_id, name, amount, note, budget_date);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return budget;
+    }
+
     public void addBudget() {
         PreparedStatement preparedStatement = null;
 
@@ -147,6 +213,30 @@ public class Budgets {
             Log.i("Add Budget","Add Budget successful.");
         }
         catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateBudget(Budgets budget) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query =  "UPDATE budget_ledgers " +
+                            "SET wallet_id = ?, name = ?, amount = ?, note = ?, budget_date = ? " +
+                            "WHERE id = ?";
+           preparedStatement = conn.prepareStatement(query);
+
+           preparedStatement.setInt(1, budget.wallet_id);
+           preparedStatement.setString(2, budget.name);
+           preparedStatement.setDouble(3, budget.amount);
+           preparedStatement.setString(4, budget.note);
+           preparedStatement.setDate(5, budget.budget_date);
+           preparedStatement.setInt(6, budget.id);
+
+           preparedStatement.executeUpdate();
+           Log.i("Update Budget", "Update budget successful.");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
