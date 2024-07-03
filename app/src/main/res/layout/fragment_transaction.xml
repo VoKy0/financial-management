@@ -32,8 +32,8 @@
             android:layout_marginTop="24dp"
             android:text="MoneyTracking"
             android:textColor="#29F29B"
-            android:textSize="20dp"
-            android:layout_marginRight="5dp"
+            android:textSize="20sp"
+            android:layout_marginEnd="5dp"
             android:textStyle="bold"
             app:layout_constraintRight_toLeftOf="@id/logo"
             app:layout_constraintTop_toTopOf="parent" />
@@ -80,13 +80,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
-            android:background="@color/white"
+            android:background="#f5f5f5"
             android:padding="5dp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_wallet" />
+                android:src="@drawable/ic_allwallet" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,9 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
-        app:tabGravity="fill"
-
-        />
+        app:tabGravity="fill" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -122,9 +120,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,8 +146,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
@@ -169,29 +167,41 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#EEEEEE"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:background="#EEEEEE" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="305dp"
+                    android:text="+180.000 đ"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:padding="1dp">
 
-                <TextView
-                    android:layout_width="0dp"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="+100.000 đ"
-                    android:textColor="#29F29B"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
                     android:text="Xem báo cáo"
                     android:textColor="#29F29B"
-                    android:textStyle="bold" />
+                    android:textSize="14dp">
+
+                </androidx.appcompat.widget.AppCompatButton>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -239,9 +249,9 @@
 
                 <ImageView
                     android:id="@+id/iv_category"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_category" />
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_home" />
 
                 <TextView
                     android:id="@+id/tv_category"
@@ -249,6 +259,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Tiền chuyển ra"
+                    android:textStyle="bold"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -256,7 +267,7 @@
                 android:id="@+id/tv_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginLeft="32dp"
                 android:text="Tiền nhà"
                 android:textSize="14sp" />
         </LinearLayout>
