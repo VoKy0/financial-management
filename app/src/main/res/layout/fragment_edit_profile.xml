@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hồ sơ"
+            android:text="Chỉnh sửa hồ sơ"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="#000000"/>
@@ -135,27 +135,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignBaseline="@id/label_dob"
             android:textColor="#000000" />
-
-        <!-- Email -->
-        <TextView
-            android:id="@+id/label_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textStyle="bold"
-            android:layout_below="@id/value_dob"
-            android:layout_alignStart="@id/label_dob"
-            android:layout_marginTop="16dp"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/value_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="mobile_nhom11@gmail.com"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBaseline="@id/label_email"
-            android:textColor="#000000" />
     </RelativeLayout>
 
     <!-- Edit Button -->
@@ -163,19 +142,9 @@
         android:id="@+id/btn_edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chỉnh sửa"
+        android:text="Lưu hồ sơ"
         android:background="@drawable/rounded_button"
         android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal" />
-
-    <!-- Change Password Link -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thay đổi mật khẩu"
-        android:textColor="#15CFCF"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:padding="12dp"/>
 
 </LinearLayout>
