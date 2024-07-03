@@ -10,21 +10,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hủy"
-            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            android:text="Ví của tôi"
+            android:textSize="24dp"
             android:textColor="#000000" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Thêm ví"
+            android:layout_marginTop="8dp"
+            android:text="Sửa"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
+            android:gravity="right"
             android:textColor="#000000" />
 
     </LinearLayout>
@@ -52,14 +61,14 @@
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:src="@null" />
+                    android:src="@drawable/ic_wallet" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_weight="1"
-                    android:text="Tên ví"
+                    android:text="Tiền mặt"
                     android:textStyle="bold"
                     android:textSize="28sp" />
 
@@ -78,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="42dp"
-                android:text="0 đ"
+                android:text="180.000 đ"
                 android:textColor="#000000"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -93,7 +102,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lưu ví"
+        android:text="Xóa ví"
         android:textColor="#FFFFFF"
         android:background="@drawable/btn_gradient_background"
         android:layout_marginTop="24dp" />
