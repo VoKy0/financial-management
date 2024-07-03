@@ -27,13 +27,17 @@ public class Users {
         conn = null;
     }
 
-    public Users(int id, String first_name, String last_name, String dob, String address) {
-        super();
-        this.id = id;
+    public Users(String first_name, String last_name, String dob, String address) {
+        this();
         this.first_name = first_name;
         this.last_name = last_name;
         this.dob = dob;
         this.address = address;
+    }
+
+    public Users(int id, String first_name, String last_name, String dob, String address) {
+        this(first_name, last_name, dob, address);
+        this.id = id;
     }
 
     public int getID() {
