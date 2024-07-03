@@ -58,6 +58,13 @@ public class WalletDetailFragment extends Fragment {
             }
         });
 
+        mViewModel.isWalletUpdated().observe(getViewLifecycleOwner(), updated -> {
+            if (updated) {
+                mViewModel.loadWallet(wallet_id); // Tải lại ngân sách sau khi cập nhật
+                mViewModel.resetWalletUpdated(); // Reset lại trạng thái cập nhật
+            }
+        });
+
         fab_edit_wallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

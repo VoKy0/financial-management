@@ -26,8 +26,12 @@
     <string name="add_transaction">Thêm giao dịch</string>
 
     <string name="wallet_detail">Thông tin ví</string>
+    <string name="budget_detail">Thông tin ngân sách</string>
+    <string name="transaction_detail">Thông tin giao dịch</string>
 
     <string name="edit_wallet">Sửa ví</string>
+    <string name="edit_budget">Sửa ngân sách</string>
+    <string name="edit_transaction">Sửa giao dịch</string>
 
     <string name="transaction">Giao dịch</string>
     <string name="overview">Tổng quan</string>

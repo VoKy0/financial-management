@@ -3,6 +3,8 @@ package com.example.financial_management_app.fragments;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,6 +50,15 @@ public class WalletFragment extends Fragment {
         FloatingActionButton fab = view.findViewById(R.id.fab_wallet);
 
         mViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
+
+        // Lấy account_id từ SharedPreferences
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        int account_id = sharedPref.getInt("account_id", -1);
+
+        // Kiểm tra nếu account_id hợp lệ, tải các mục ví
+        if (account_id != -1) {
+            mViewModel.loadWalletItems(account_id);
+        }
 
         mViewModel.getWalletItems().observe(getViewLifecycleOwner(), new Observer<List<Wallets>>() {
             @Override

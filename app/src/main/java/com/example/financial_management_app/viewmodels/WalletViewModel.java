@@ -22,7 +22,6 @@ public class WalletViewModel extends ViewModel {
         walletItems = new MutableLiveData<>();
         executorService = Executors.newSingleThreadExecutor();
         walletAdded = new MutableLiveData<>(false);
-        loadWalletItems();
     }
 
     public LiveData<List<Wallets>> getWalletItems() {
