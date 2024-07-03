@@ -51,5 +51,6 @@ dependencies {
     implementation("mysql:mysql-connector-java:5.1.49")
 
     implementation("com.google.android.gms:play-services-auth:20.3.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
 
 }
