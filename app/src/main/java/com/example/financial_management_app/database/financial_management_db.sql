@@ -55,11 +55,13 @@ CREATE TABLE transaction_ledgers (
     CONSTRAINT PK_transaction_ledgers_id PRIMARY KEY(id, transaction_id)
 ) ENGINE = InnoDB;
 
+DROP TABLE budget_ledgers;
 CREATE TABLE budget_ledgers (
 	id int AUTO_INCREMENT,
     account_id int,
+    wallet_id int,
     name varchar(255),
-    amount double,o
+    amount double,
     note text,
     budget_date datetime,
     CONSTRAINT PK_budget_ledgers_id PRIMARY KEY(id)
@@ -87,18 +89,30 @@ ALTER TABLE dept_ledgers ADD CONSTRAINT FK_dept_ledgers_and_transactions_on_tran
 SELECT * FROM users;
 SELECT * FROM accounts;
 
+DROP TABLE users;
+DROP TABLE accounts;
+
 INSERT INTO users(first_name, last_name, dob, address) VALUES ("Vo", "Ky", "2003-10-09", "VN");
 INSERT INTO accounts(user_id, username, email, password) VALUES ("1", "voky", "voky@gmail.com", "123123123");
 
+INSERT INTO users(first_name, last_name, dob, address) VALUES ("Phuong", "Nghi", "2003-12-28", "VN");
+INSERT INTO accounts(user_id, username, email, password) VALUES ("2", "pnghi", "pnghi@gmail.com", "123123123");
+
+DROP TABLE wallets;
+
 INSERT INTO wallets (account_id, name, category, balance)
-VALUES 	(1, "Checking Account", "vi1", "100"),
-		(1, "Savings Account", "vi2", "100");
+VALUES 	(1, "Checking Account", "Ví tiết kiệm", "100"),
+		(1, "Savings Account", "Ví tiết kiệm", "100"),
+        (1, "Savings Account", "Ví tiết kiệm", "100"),
+        (1, "Savings Account", "Ví tiết kiệm", "100"),
+        (2, "Savings Account", "Ví Cơ bản", "100");
         
 SELECT * FROM transactions;
 SELECT * FROM wallets;
 SELECT * FROM budget_ledgers;
 
 DROP TABLE wallets;
+DROP TABLE budget_ledgers;
 
 INSERT INTO transactions (account_id, transaction_date, amount, note) VALUES
 (1, "2024-05-01 12:30:00", -50.00, "Groceries at Supermarket"),
@@ -111,7 +125,8 @@ INSERT INTO transactions (account_id, transaction_date, amount, note) VALUES
 INSERT INTO budget_ledgers(account_id, wallet_id, name, amount, note, budget_date)
 VALUES ("1", "1", "Ăn uống", "50000", "Note", "2024-05-05"),
 	   ("1", "2", "Tiền nhà", "50000", "Note", "2024-05-05"),
-	   ("2", "3", "Tiền nhà", "50000", "Note", "2024-05-05");
-       ("1", "4", "vi3", "50000", "Note", "2024-05-05"),
-       ("1", "5", "vi4", "50000", "Note", "2024-05-05"),
+	   ("2", "3", "Tiền nhà", "50000", "Note", "2024-05-05"),
+       ("1", "4", "ns3", "50000", "Note", "2024-05-05");
+       
+DELETE FROM budget_ledgers WHERE id = 5;
 
