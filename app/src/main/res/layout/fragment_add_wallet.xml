@@ -45,19 +45,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_border"
-                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@null" />
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_avatar_gray" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="6dp"
                     android:layout_weight="1"
                     android:text="Tên ví"
                     android:textStyle="bold"
@@ -72,7 +70,7 @@
                 android:layout_marginLeft="42dp"
                 android:text="Số tiền"
                 android:textColor="#888888"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"

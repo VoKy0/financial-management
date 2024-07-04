@@ -14,27 +14,26 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
             android:text="Ví của tôi"
-            android:textSize="24dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="24dp" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
-            android:text="Sửa"
-            android:textSize="24sp"
             android:gravity="right"
-            android:textColor="#000000" />
+            android:text="Sửa"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -54,19 +53,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_border"
-                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:src="@drawable/ic_wallet" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="6dp"
                     android:layout_weight="1"
                     android:text="Tiền mặt"
                     android:textStyle="bold"
@@ -81,7 +78,7 @@
                 android:layout_marginLeft="42dp"
                 android:text="Số tiền"
                 android:textColor="#888888"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"

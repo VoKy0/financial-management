@@ -14,39 +14,15 @@
         android:elevation="4dp"
         tools:ignore="MissingConstraints">
 
-
         <ImageView
             android:id="@+id/btn_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:src="@drawable/ic_menu"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="10dp" />
+            tools:layout_editor_absoluteY="16dp" />
 
-        <TextView
-            android:id="@+id/logo_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="MoneyTracking"
-            android:textColor="#29F29B"
-            android:textSize="20sp"
-            android:layout_marginEnd="5dp"
-            android:textStyle="bold"
-            app:layout_constraintRight_toLeftOf="@id/logo"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_money"
-            tools:layout_editor_absoluteX="351dp"
-            tools:layout_editor_absoluteY="0dp" />
+        <include layout="@layout/content_main"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -65,7 +41,7 @@
             android:layout_gravity="center"
             android:text="Ví của tôi"
             android:textColor="@android:color/black"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -81,14 +57,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="16dp"
             android:background="@drawable/rounded_border"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_allwallet" />
 
             <LinearLayout
@@ -102,21 +80,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tất cả các ví"
-                    android:textSize="24dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="180.000 đ"
-                    android:textColor="@android:color/darker_gray" />
+                    android:textSize="18sp"
+                    android:textColor="#000000" />
             </LinearLayout>
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginStart="56dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_check" />
 
         </LinearLayout>
@@ -143,7 +124,7 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/totalWalletCard"
+        android:id="@+id/moneyWalletCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
@@ -152,14 +133,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="16dp"
             android:background="@drawable/rounded_border"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_wallet" />
 
             <LinearLayout
@@ -170,17 +153,20 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Tiền mặt"
-                    android:textSize="24dp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="180.000 đ"
-                    android:textColor="@android:color/darker_gray" />
+                    android:textSize="18sp"
+                    android:textColor="#000000" />
             </LinearLayout>
 
 
@@ -196,8 +182,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="#29F29B" />
+        android:backgroundTint="#15CFCF"
+        android:src="@drawable/ic_add" />
 
 </LinearLayout>
 

@@ -10,44 +10,19 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border"
         app:contentInsetStart="0dp"
         android:elevation="4dp"
         tools:ignore="MissingConstraints">
-
 
         <ImageView
             android:id="@+id/btn_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:src="@drawable/ic_menu"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="10dp" />
+            tools:layout_editor_absoluteY="16dp" />
 
-        <TextView
-            android:id="@+id/logo_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="MoneyTracking"
-            android:textColor="#29F29B"
-            android:textSize="20sp"
-            android:layout_marginEnd="5dp"
-            android:textStyle="bold"
-            app:layout_constraintRight_toLeftOf="@id/logo"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-                android:id="@+id/logo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_money"
-                tools:layout_editor_absoluteX="351dp"
-                tools:layout_editor_absoluteY="0dp" />
+        <include layout="@layout/content_main"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -64,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Số dư"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,7 +47,7 @@
             android:layout_gravity="center"
             android:text="180.000 đ"
             android:textColor="@android:color/black"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -91,13 +66,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="8dp"
                 android:text="Tất cả các ví"
+                android:textSize="18sp"
                 android:textColor="@android:color/black" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/ic_dropdown" />
         </LinearLayout>
     </LinearLayout>
@@ -127,6 +104,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -134,12 +112,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Số dư đầu"
+                    android:layout_marginStart="8dp"
                     android:textColor="#888888" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0 đ"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
                     android:textColor="@android:color/black" />
             </LinearLayout>
 
@@ -154,12 +135,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Số dư cuối"
+                    android:layout_marginStart="8dp"
                     android:textColor="#888888" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+180.000 đ"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -169,7 +153,7 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="#EEEEEE" />
+                android:background="#A5A5A5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -178,8 +162,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="305dp"
                     android:text="+180.000 đ"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -198,7 +183,7 @@
                     android:layout_gravity="center"
                     android:background="@color/white"
                     android:text="Xem báo cáo"
-                    android:textColor="#29F29B"
+                    android:textColor="#15CFCF"
                     android:textSize="14dp">
 
                 </androidx.appcompat.widget.AppCompatButton>
@@ -217,7 +202,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="04"
-            android:textSize="24sp"
+            android:textSize="28sp"
+            android:textColor="#000000"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -232,14 +218,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hôm nay"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_month_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tháng 7 năm 2024"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -249,8 +235,8 @@
 
                 <ImageView
                     android:id="@+id/iv_category"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:src="@drawable/ic_home" />
 
                 <TextView
@@ -260,7 +246,8 @@
                     android:layout_marginLeft="8dp"
                     android:text="Tiền chuyển ra"
                     android:textStyle="bold"
-                    android:textSize="16sp" />
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <TextView
@@ -269,7 +256,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:text="Tiền nhà"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <TextView
@@ -294,8 +281,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="#29F29B" />
+        android:backgroundTint="#15CFCF"
+        android:src="@drawable/ic_add" />
 
 </LinearLayout>
 

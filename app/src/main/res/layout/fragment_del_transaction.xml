@@ -14,27 +14,26 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Back" />
+            android:contentDescription="Back"
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
             android:text="Giao dịch"
-            android:textSize="24dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="24dp" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
-            android:text="Sửa"
-            android:textSize="24sp"
             android:gravity="right"
-            android:textColor="#000000" />
+            android:text="Sửa"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
@@ -72,21 +71,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tiền chuyển ra"
-                        android:textSize="24dp"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"
-                        android:text="Ăn uống" />
+                        android:textSize="20sp"
+                        android:text="Ăn uống"
+                        android:textColor="#000000" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="32dp"
+                        android:textSize="28dp"
                         android:text="100.000 đ"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
 
                 </LinearLayout>
 

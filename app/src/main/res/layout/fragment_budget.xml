@@ -10,44 +10,19 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_border"
         app:contentInsetStart="0dp"
         android:elevation="4dp"
         tools:ignore="MissingConstraints">
-
 
         <ImageView
             android:id="@+id/btn_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:src="@drawable/ic_menu"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="10dp" />
+            tools:layout_editor_absoluteY="16dp" />
 
-        <TextView
-            android:id="@+id/logo_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="MoneyTracking"
-            android:textColor="#29F29B"
-            android:textSize="20sp"
-            android:layout_marginEnd="5dp"
-            android:textStyle="bold"
-            app:layout_constraintRight_toLeftOf="@id/logo"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_money"
-            tools:layout_editor_absoluteX="351dp"
-            tools:layout_editor_absoluteY="0dp" />
+        <include layout="@layout/content_main"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -64,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Ngân sách đang áp dụng"
+            android:text="Ngân sách đang áp dụng cho"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -85,13 +60,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="8dp"
                 android:text="Tất cả các ví"
+                android:textSize="18sp"
                 android:textColor="@android:color/black" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/ic_dropdown" />
         </LinearLayout>
     </LinearLayout>
@@ -101,6 +78,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp">
 
         <LinearLayout
@@ -142,6 +121,7 @@
                         android:layout_weight="1"
                         android:text="500.000 đ"
                         android:textSize="24dp"
+                        android:textColor="#000000"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -168,7 +148,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="Còn lại"
-                    android:textColor="@android:color/darker_gray" />
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -194,16 +174,13 @@
             </LinearLayout>
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progressBar1"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:layout_marginTop="8dp"
                 android:progress="4"
                 android:progressDrawable="@drawable/custom_progress_bar" />
-
-
-
 
         </LinearLayout>
 
@@ -217,6 +194,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/rounded_border"
             android:orientation="vertical"
             android:padding="16dp">
@@ -252,6 +231,7 @@
                         android:gravity="end"
                         android:layout_weight="1"
                         android:text="2.000.000 đ"
+                        android:textColor="#000000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
 
@@ -279,7 +259,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="Còn lại"
-                    android:textColor="@android:color/darker_gray" />
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -305,17 +285,13 @@
             </LinearLayout>
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progressBar2"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:layout_marginTop="8dp"
                 android:progress="4"
                 android:progressDrawable="@drawable/custom_progress_bar" />
-
-
-
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -326,8 +302,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="#29F29B" />
+        android:backgroundTint="#15CFCF"
+        android:src="@drawable/ic_add" />
 
 </LinearLayout>
 
