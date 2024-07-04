@@ -2,7 +2,6 @@ package com.example.financial_management_app.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,13 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.financial_management_app.R;
-import com.example.financial_management_app.activities.ChangePasswordActivity;
-import com.example.financial_management_app.models.Account;
-import com.example.financial_management_app.models.Users;
+import com.example.financial_management_app.activities.ResetPasswordActivity;
 import com.example.financial_management_app.viewmodels.ProfileViewModel;
 
 public class ProfileFragment extends Fragment {
@@ -89,22 +85,14 @@ public class ProfileFragment extends Fragment {
         });
 
         // Xử lý sự kiện nút "Thay đổi mật khẩu"
-        btn_change_password.setOnClickListener(v -> {
-            // Chuyển hướng đến trang thay đổi mật khẩu
-            Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
-            startActivity(intent);
+        btn_change_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_ProfileFragment_to_ChangePasswordFragment);
+            }
         });
 
-        mViewModel.loadProfileData(account_id);
-    }
-
-    private void loadProfile(Account account, Users user) {
-        tv_username.setText(account.getUsername());
-        tv_email.setText(account.getEmail());
-        tv_phone.setText(account.getPhone());
-        tv_fullname.setText(user.getFullName());
-        tv_dob.setText(String.valueOf(user.getDob()));
-        tv_address.setText(user.getAddress());
+        mViewModel.loadProfile(account_id);
     }
 
     private int getAccountIdFromSharedPreferences() {

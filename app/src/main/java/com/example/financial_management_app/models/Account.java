@@ -69,6 +69,13 @@ public class Account {
         this(username, email, password);
         this.phone = phone;
     }
+    public Account(int id, String username, String email, String phone) {
+        this();
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+    }
     public Account(int id, String username, String email, String phone, String password) {
         this(username, email, phone, password);
         this.id = id;
@@ -254,6 +261,45 @@ public class Account {
             preparedStatement.setString(2, email);
             preparedStatement.setString(3, phone);
             preparedStatement.setString(4, password);
+
+            preparedStatement.executeUpdate();
+            Log.i("Add Account","Add account successful.");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAccount(int id) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "UPDATE accounts SET username = ?, email = ?, phone = ? WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, phone);
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+            Log.i("Add Account","Add account successful.");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updatePasswordByID(int account_id) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "UPDATE accounts SET password = ? WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, account_id);
 
             preparedStatement.executeUpdate();
             Log.i("Add Account","Add account successful.");

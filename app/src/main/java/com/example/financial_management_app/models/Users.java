@@ -38,15 +38,20 @@ public class Users {
         this.dob = dob;
         this.address = address;
     }
-
-    public Users(int id, int account_id, String first_name, String last_name, Date dob, String address) {
+    public Users(int account_id, String first_name, String last_name, Date dob, String address) {
         this(first_name, last_name, dob, address);
-        this.id = id;
         this.account_id = account_id;
+    }
+    public Users(int id, int account_id, String first_name, String last_name, Date dob, String address) {
+        this(account_id, first_name, last_name, dob, address);
+        this.id = id;
     }
 
     public int getID() {
         return id;
+    }
+    public int getAccountID() {
+        return account_id;
     }
     public String getFirstName() {
         return first_name;
@@ -141,19 +146,19 @@ public class Users {
         }
     }
 
-    public void updateUser(int userID) {
+    public void updateUserByAccountID(int account_id) {
         PreparedStatement preparedStatement = null;
 
         try {
             conn = connectDB.getConnection();
-            String query = "UPDATE users SET first_name=?, last_name=?, dob=?, address=? WHERE id=?";
+            String query = "UPDATE users SET first_name=?, last_name=?, dob=?, address=? WHERE account_id=?";
             preparedStatement = conn.prepareStatement(query);
 
             preparedStatement.setString(1, first_name);
             preparedStatement.setString(2, last_name);
             preparedStatement.setDate(3, dob);
             preparedStatement.setString(4, address);
-            preparedStatement.setInt(5, userID);
+            preparedStatement.setInt(5, account_id);
 
             preparedStatement.executeUpdate();
             Log.i("Update User", "Update user in database successful.");

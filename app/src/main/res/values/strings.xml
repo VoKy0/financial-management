@@ -20,6 +20,7 @@
     <string name="manage_account">Hồ sơ</string>
     <string name="export_pdf">Xuất pdf</string>
     <string name="sign_out">Đăng xuất</string>
+    <string name="change_password">Thay đổi mật khẩu</string>
 
     <string name="add_wallet">Thêm ví</string>
     <string name="add_budget">Thêm ngân sách</string>

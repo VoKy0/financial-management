@@ -1,20 +1,23 @@
 CREATE DATABASE financial_management_db;
 USE financial_management_db;
 
+DROP TABLE users;
 CREATE TABLE users (
 	id int AUTO_INCREMENT,
+    account_id int,
     first_name varchar(255),
     last_name varchar(255),
-    dob varchar(255),
+    dob date,
     address varchar(255),
     CONSTRAINT PK_users_id PRIMARY KEY(id)
 ) ENGINE = InnoDB;
 
+DROP TABLE accounts;
 CREATE TABLE accounts (
 	id int AUTO_INCREMENT,
-    user_id int,	
     username varchar(255),
     email varchar(255),
+    phone varchar(20),
     password varchar(255),
 	avatar_url varchar(255),
     CONSTRAINT PK_accounts_id PRIMARY KEY(id)
@@ -89,23 +92,20 @@ ALTER TABLE dept_ledgers ADD CONSTRAINT FK_dept_ledgers_and_transactions_on_tran
 SELECT * FROM users;
 SELECT * FROM accounts;
 
-DROP TABLE users;
-DROP TABLE accounts;
+INSERT INTO users(account_id, first_name, last_name, dob, address) VALUES ("1", "Vo", "Ky", "2003-10-09", "VN");
+INSERT INTO accounts(username, email, phone, password) VALUES ("voky", "voky@gmail.com", "0123123123", "123123123");
 
-INSERT INTO users(first_name, last_name, dob, address) VALUES ("Vo", "Ky", "2003-10-09", "VN");
-INSERT INTO accounts(user_id, username, email, password) VALUES ("1", "voky", "voky@gmail.com", "123123123");
-
-INSERT INTO users(first_name, last_name, dob, address) VALUES ("Phuong", "Nghi", "2003-12-28", "VN");
-INSERT INTO accounts(user_id, username, email, password) VALUES ("2", "pnghi", "pnghi@gmail.com", "123123123");
+INSERT INTO users(account_id, first_name, last_name, dob, address) VALUES ("2", "Phuong", "Nghi", "2003-12-28", "VN");
+INSERT INTO accounts(username, email, phone, password) VALUES ("pnghi", "pnghi@gmail.com", "1234567890", "123123123");
 
 DROP TABLE wallets;
 
 INSERT INTO wallets (account_id, name, category, balance)
 VALUES 	(1, "Checking Account", "Ví tiết kiệm", "100"),
-		(1, "Savings Account", "Ví tiết kiệm", "100"),
-        (1, "Savings Account", "Ví tiết kiệm", "100"),
-        (1, "Savings Account", "Ví tiết kiệm", "100"),
-        (2, "Savings Account", "Ví Cơ bản", "100");
+		(1, "Savings Account 1", "Ví tiết kiệm", "100"),
+        (1, "Savings Account 2", "Ví tiết kiệm", "100"),
+        (1, "Savings Account 3", "Ví tiết kiệm", "100"),
+        (2, "Savings Account 4", "Ví Cơ bản", "100");
         
 SELECT * FROM transactions;
 SELECT * FROM wallets;
@@ -129,4 +129,8 @@ VALUES ("1", "1", "Ăn uống", "50000", "Note", "2024-05-05"),
        ("1", "4", "ns3", "50000", "Note", "2024-05-05");
        
 DELETE FROM budget_ledgers WHERE id = 5;
+
+UPDATE budget_ledgers
+SET note = "yeah1" AND amount = 1000
+WHERE id = 1;	
 

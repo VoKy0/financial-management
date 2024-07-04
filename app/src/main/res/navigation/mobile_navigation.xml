@@ -81,7 +81,16 @@
         <action
             android:id="@+id/action_ProfileFragment_to_EditProfileFragment"
             app:destination="@id/nav_edit_profile" />
+        <action
+            android:id="@+id/action_ProfileFragment_to_ChangePasswordFragment"
+            app:destination="@id/nav_change_password" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_change_password"
+        android:name="com.example.financial_management_app.fragments.ChangePasswordFragment"
+        android:label="@string/change_password"
+        tools:layout="@layout/fragment_change_password" />
 
     <fragment
         android:id="@+id/nav_edit_profile"
