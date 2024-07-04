@@ -35,23 +35,43 @@ import javax.xml.transform.Result;
 import com.example.financial_management_app.utils.ConnectDB;
 
 public class Account {
-    private int id = -1;
-    private int user_id = -1;
-    private String username = "";
-    private String email = "";
-    private String password = "";
-    private String avatar_url = "";
-    private ConnectDB connectDB = new ConnectDB();
-    private Connection conn = null;
+    private int id;
+    private String username;
+    private String email;
+    private String phone;
+    private String password;
+    private String avatar_url;
+    private ConnectDB connectDB;
+    private Connection conn;
 
+    public Account() {
+        id = -1;
+        username = "";
+        email = "";
+        phone = "";
+        password = "";
+        avatar_url = "";
+        connectDB = new ConnectDB();
+        conn = null;
+    }
     public Account(String email, String password) {
+        this();
         this.email = email;
         this.password = password;
     }
     public Account(String username, String email, String password) {
+        this(email, password);
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+    public Account(String username, String email, String phone, String password) {
+        this(username, email, password);
+        this.phone = phone;
+    }
+    public Account(int id, String username, String email, String phone, String password) {
+        this(username, email, phone, password);
+        this.id = id;
     }
 
     public int getID() {
@@ -63,6 +83,9 @@ public class Account {
     public String getEmail() {
         return email;
     }
+    public String getPhone() {
+        return phone;
+    }
     public String getPassword() {
         return password;
     }
@@ -71,6 +94,9 @@ public class Account {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     public void setPassword(String password) {
         this.password = password;
@@ -91,7 +117,7 @@ public class Account {
 
     public int checkAccount() {
         try {
-            ResultSet res = findAccountFromDB(email);
+            ResultSet res = getAccountByEmail(email);
             if (res != null && res.next()) {
                 String pass = res.getString("password");
                 if (password.equals(pass))
@@ -109,7 +135,7 @@ public class Account {
         return -1;
     }
 
-    public ResultSet findAccountFromDB(String email) {
+    public ResultSet getAccountByEmail(String email) {
         PreparedStatement preparedStatement = null;
         ResultSet res = null;
 
@@ -130,7 +156,7 @@ public class Account {
         return res;
     }
 
-    public int getIDFromDBByEmail(String email) {
+    public int getIDByEmail(String email) {
         PreparedStatement preparedStatement = null;
         ResultSet res = null;
         int account_id = -1;
@@ -188,40 +214,45 @@ public class Account {
         return res;
     }
 
-    public int getMaxUserID() {
+    public Account getAccountByID(int account_id) {
         PreparedStatement preparedStatement = null;
+        Account account = new Account();
         ResultSet res = null;
-        int max_uid = 0;
 
         try {
             conn = connectDB.getConnection();
-            String query = "SELECT MAX(user_id) FROM accounts";
+            String query = "SELECT id, username, email, phone, password FROM accounts WHERE id = ?";
             preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, account_id);
             res = preparedStatement.executeQuery();
 
             if (res.next()) {
-                max_uid = res.getInt("user_id");
+                account = new Account(
+                        res.getInt("id"),
+                        res.getString("username"),
+                        res.getString("email"),
+                        res.getString("phone"),
+                        res.getString("password")
+                );
             }
-        }
-        catch (SQLException e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return max_uid;
+        return account;
     }
-
     public void addAccount() {
-        user_id = getMaxUserID() + 1;
         PreparedStatement preparedStatement = null;
 
         try {
             conn = connectDB.getConnection();
-            String query = "INSERT INTO accounts(user_id, username, email, password) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO accounts(username, email, phone, password) VALUES (?, ?, ?, ?)";
             preparedStatement = conn.prepareStatement(query);
 
-            preparedStatement.setInt(1, user_id);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, email);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, phone);
             preparedStatement.setString(4, password);
 
             preparedStatement.executeUpdate();
@@ -230,34 +261,5 @@ public class Account {
         catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public Users getUserInfo() {
-        Users user = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet res = null;
-
-        try {
-            Connection conn = connectDB.getConnection();
-            if (conn != null) {
-                String query = "SELECT * FROM users WHERE email=?";
-                preparedStatement = conn.prepareStatement(query);
-                preparedStatement.setString(1, email);
-                res = preparedStatement.executeQuery();
-
-                if (res.next()) {
-                    user = new Users(
-                            res.getString("first_name"),
-                            res.getString("last_name"),
-                            res.getString("dob"),
-                            res.getString("address")
-                    );
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return user;
     }
 }

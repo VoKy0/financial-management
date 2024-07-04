@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.i("Login", "Tài khoản hoặc mật khẩu không đúng.");
                                 break;
                             case 1:
-                                int account_id = acc.getIDFromDBByEmail(acc.getEmail());
+                                int account_id = acc.getIDByEmail(acc.getEmail());
 
                                 SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPref.edit();

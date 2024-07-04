@@ -13,6 +13,8 @@ import com.example.financial_management_app.R;
 import com.example.financial_management_app.models.Account;
 import com.example.financial_management_app.models.Users;
 
+import java.sql.Date;
+
 public class SignupActitvity extends AppCompatActivity {
     private EditText edt_first_name;
     private EditText edt_last_name;
@@ -57,7 +59,7 @@ public class SignupActitvity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 
-                String dob = edt_dob.getText().toString();
+                Date dob = Date.valueOf(edt_dob.getText().toString());
 
                 String first_name = edt_first_name.getText().toString();
                 String last_name = edt_last_name.getText().toString();

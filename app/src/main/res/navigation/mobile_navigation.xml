@@ -77,7 +77,17 @@
         android:id="@+id/nav_profile"
         android:name="com.example.financial_management_app.fragments.ProfileFragment"
         android:label="@string/manage_account"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_ProfileFragment_to_EditProfileFragment"
+            app:destination="@id/nav_edit_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_profile"
+        android:name="com.example.financial_management_app.fragments.EditProfileFragment"
+        android:label="@string/edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
         android:id="@+id/nav_budget_ledger"
