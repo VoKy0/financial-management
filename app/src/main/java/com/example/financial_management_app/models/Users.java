@@ -69,6 +69,9 @@ public class Users {
         return address;
     }
 
+    public void setAccountID(int account_id) {
+        this.account_id = account_id;
+    }
     public void setFirstName(String first_name) {
         this.first_name = first_name;
     }
@@ -129,13 +132,14 @@ public class Users {
 
         try {
             conn = connectDB.getConnection();
-            String query = "INSERT INTO users(first_name, last_name, dob, address) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO users(account_id, first_name, last_name, dob, address) VALUES (?, ?, ?, ?)";
             preparedStatement = conn.prepareStatement(query);
 
-            preparedStatement.setString(1, first_name);
-            preparedStatement.setString(2, last_name);
-            preparedStatement.setDate(3, dob);
-            preparedStatement.setString(4, address);
+            preparedStatement.setInt(1, account_id);
+            preparedStatement.setString(2, first_name);
+            preparedStatement.setString(3, last_name);
+            preparedStatement.setDate(4, dob);
+            preparedStatement.setString(5, address);
 
             preparedStatement.executeUpdate();
             Log.i("Add User", "Insert user into database successful.");

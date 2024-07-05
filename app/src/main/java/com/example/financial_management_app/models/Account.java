@@ -122,6 +122,30 @@ public class Account {
         return password.equals(re_password);
     }
 
+    public int getMaxID() {
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+        int max_id = -1;
+
+        try {
+            Connection conn = connectDB.getConnection();
+
+            if (conn != null) {
+                String query = "SELECT MAX(id) FROM accounts";
+                preparedStatement = conn.prepareStatement(query);
+                res = preparedStatement.executeQuery();
+            }
+
+            if (res.next()) {
+                max_id = res.getInt("id");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return max_id;
+    }
     public int checkAccount() {
         try {
             ResultSet res = getAccountByEmail(email);

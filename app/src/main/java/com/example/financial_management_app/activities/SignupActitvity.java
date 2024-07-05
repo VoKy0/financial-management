@@ -81,38 +81,41 @@ public class SignupActitvity extends AppCompatActivity {
                     acc.isValidPassword() &&
                     acc.isValidRePassword(re_password)) {
 
+                    int account_id = acc.getMaxID() + 1;
+                    user.setAccountID(account_id);
+
                     acc.addAccount();
                     user.addUser();
 
                     // Signup successful -> navigate to home
-                    Intent intent = new Intent(SignupActitvity.this, MainActivity.class);
+                    Intent intent = new Intent(SignupActitvity.this, LoginActivity.class);
                     startActivity(intent);
                 }
 
-                if (!user.isValidFirstName()) {
-                    // Lỗi
-                }
-                if (!user.isValidLastName()) {
-                    // Lỗi
-                }
-                if (!user.isValidDob()) {
-                    // Lỗi
-                }
-                if (!user.isValidAddress()) {
-                    // Lỗi
-                }
-                if (!acc.isValidUsername()) {
-                    // Lỗi
-                }
-                if (!acc.isValidEmail()) {
-                    // Lỗi
-                }
-                if (!acc.isValidPassword()) {
-                    // Lỗi
-                }
-                if (!acc.isValidRePassword(re_password)) {
-                    // Lỗi
-                }
+//                if (!user.isValidFirstName()) {
+//                    // Lỗi
+//                }
+//                if (!user.isValidLastName()) {
+//                    // Lỗi
+//                }
+//                if (!user.isValidDob()) {
+//                    // Lỗi
+//                }
+//                if (!user.isValidAddress()) {
+//                    // Lỗi
+//                }
+//                if (!acc.isValidUsername()) {
+//                    // Lỗi
+//                }
+//                if (!acc.isValidEmail()) {
+//                    // Lỗi
+//                }
+//                if (!acc.isValidPassword()) {
+//                    // Lỗi
+//                }
+//                if (!acc.isValidRePassword(re_password)) {
+//                    // Lỗi
+//                }
             }
         });
     }
