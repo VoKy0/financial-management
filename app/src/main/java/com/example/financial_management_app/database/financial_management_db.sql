@@ -37,6 +37,8 @@ DROP TABLE transactions;
 CREATE TABLE transactions (
 	id int AUTO_INCREMENT,
     account_id int,
+    budget_id int,
+	wallet_id int,
     transaction_date datetime,
     amount float,
     note text,
@@ -91,6 +93,7 @@ ALTER TABLE dept_ledgers ADD CONSTRAINT FK_dept_ledgers_and_transactions_on_tran
 -- INSERT
 SELECT * FROM users;
 SELECT * FROM accounts;
+SELECT * FROM transactions;
 
 INSERT INTO users(account_id, first_name, last_name, dob, address) VALUES ("1", "Vo", "Ky", "2003-10-09", "VN");
 INSERT INTO accounts(username, email, phone, password) VALUES ("voky", "voky@gmail.com", "0123123123", "123123123");
@@ -114,7 +117,7 @@ SELECT * FROM budget_ledgers;
 DROP TABLE wallets;
 DROP TABLE budget_ledgers;
 
-INSERT INTO transactions (account_id, transaction_date, amount, note) VALUES
+INSERT INTO transactions (account_id, budget_id, wallet_id, transaction_date, amount, note) VALUES
 (1, "2024-05-01 12:30:00", -50.00, "Groceries at Supermarket"),
 (1, "2024-05-02 08:00:00", 1500.00, "Salary Deposit"),
 (2, "2024-05-03 14:00:00", -200.00, "New Shoes Purchase"),

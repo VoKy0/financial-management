@@ -15,19 +15,22 @@ import java.util.concurrent.Executors;
 
 public class TransactionViewModel extends ViewModel {
     private MutableLiveData<List<Transactions>> transactionItems;
+    private MutableLiveData<Boolean> transactionAdded;
     private ExecutorService executorService;
 
     public TransactionViewModel() {
-
         transactionItems = new MutableLiveData<>();
+        transactionAdded = new MutableLiveData<>(false);
         executorService = Executors.newSingleThreadExecutor();
-        loadTransactionItems();
     }
     public LiveData<List<Transactions>> getTransactionItems() {
         return transactionItems;
     }
+    public LiveData<Boolean> getTransactionAdded() {
+        return transactionAdded;
+    }
 
-    private void loadTransactionItems() {
+    public void loadTransactionItems() {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -42,5 +45,16 @@ public class TransactionViewModel extends ViewModel {
                 Log.d("Execution Time Transaction - get", "Thời gian thực thi của truy vấn thông tin giao dịch: " + executionTime + "ms");
             }
         });
+    }
+
+    public void createTransaction(Transactions transaction) {
+        transaction.addTransaction();
+
+        loadTransactionItems();
+
+        transactionAdded.postValue(true);
+    }
+    public void resetTransactionAdded() {
+        transactionAdded.postValue(false);
     }
 }

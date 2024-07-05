@@ -47,7 +47,7 @@ public class TransactionAdapter extends BaseAdapter {
         TextView transactionDateTextView = convertView.findViewById(R.id.transaction_item_transaction_date);
         TextView amountTextView = convertView.findViewById(R.id.transaction_item_amount);
 
-        transactionDateTextView.setText(transaction.getTransactionDate());
+        transactionDateTextView.setText(String.valueOf(transaction.getTransactionDate()));
         amountTextView.setText(String.valueOf(transaction.getAmount()));
 
         return convertView;

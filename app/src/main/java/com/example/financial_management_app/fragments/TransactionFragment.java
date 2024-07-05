@@ -28,46 +28,32 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 public class TransactionFragment extends Fragment {
-    private FragmentTransactionBinding binding;
     private TransactionViewModel mViewModel;
     private ListView listView;
     private TransactionAdapter transactionAdapter;
 
-
-
-    public TransactionFragment() {
-        // Required empty public constructor
+    public static TransactionFragment newInstance() {
+        return new TransactionFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        TransactionViewModel transactionViewModel =
-                new ViewModelProvider(this).get(TransactionViewModel.class);
-
-        binding = FragmentTransactionBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        FloatingActionButton fab = root.findViewById(R.id.fab_transaction);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
-                navController.navigate(R.id.nav_add_transaction);
-            }
-        });
-
-        return root;
-//        return inflater.inflate(R.layout.fragment_transaction, container, false);
+        return inflater.inflate(R.layout.fragment_transaction, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        FloatingActionButton fab = view.findViewById(R.id.fab_transaction);
+
+
         listView = view.findViewById(R.id.transaction_list_view);
         mViewModel = new ViewModelProvider(this).get(TransactionViewModel.class);
+
+        mViewModel.loadTransactionItems();
+
         mViewModel.getTransactionItems().observe(getViewLifecycleOwner(), new Observer<List<Transactions>>() {
             @Override
             public void onChanged(List<Transactions> transactionItems) {
@@ -76,5 +62,12 @@ public class TransactionFragment extends Fragment {
             }
         });
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
+                navController.navigate(R.id.nav_add_transaction);
+            }
+        });
     }
 }

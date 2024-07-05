@@ -59,7 +59,12 @@
         android:id="@+id/nav_add_transaction"
         android:name="com.example.financial_management_app.fragments.AddTransactionFragment"
         android:label="@string/add_transaction"
-        tools:layout="@layout/fragment_add_transaction" />
+        tools:layout="@layout/fragment_add_transaction">
+        <action
+            android:id="@+id/action_AddTransactionFragment_to_TransactionFragment"
+            app:destination="@id/nav_transaction"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_transaction"
