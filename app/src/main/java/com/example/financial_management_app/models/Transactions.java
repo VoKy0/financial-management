@@ -49,13 +49,85 @@ public class Transactions {
         this.id = id;
     }
 
+    public int getID() {
+        return id;
+    }
+    public int getBudgetID() {
+        return budget_id;
+    }
+    public int getWalletID() {
+        return wallet_id;
+    }
     public Date getTransactionDate() {
         return transaction_date;
     }
     public Double getAmount() {
         return amount;
     }
+    public String getNote() {
+        return note;
+    }
 
+    public void setBudgetID(int budget_id) {
+        this.budget_id = budget_id;
+    }
+    public void setWalletID(int wallet_id) {
+        this.wallet_id = wallet_id;
+    }
+    public void setTransactionDate(Date transaction_date) {
+        this.transaction_date = transaction_date;
+    }
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getWalletName(int wallet_id) {
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+        String wallet_name = "";
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT name FROM wallets WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, wallet_id);
+            res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                wallet_name = res.getString("name");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return wallet_name;
+    }
+    public String getBudgetName(int budget_id) {
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+        String budget_name = "";
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT name FROM budget_ledgers WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, budget_id);
+            res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                budget_name = res.getString("name");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return budget_name;
+    }
     public List<Transactions> getTransactionsFromDB() {
         List<Transactions> transactionItems = new ArrayList<>();
         PreparedStatement preparedStatement = null;
@@ -83,6 +155,34 @@ public class Transactions {
 
         return transactionItems;
     }
+    public Transactions getTransactionByID(int transaction_id) {
+        Transactions transaction = new Transactions();
+        PreparedStatement preparedStatement = null;
+        ResultSet res = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query = "SELECT id, account_id, budget_id, wallet_id, transaction_date, amount, note FROM transactions WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, transaction_id);
+            res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                int id = res.getInt("id");
+                int account_id = res.getInt("account_id");
+                int budget_id = res.getInt("budget_id");
+                int wallet_id = res.getInt("wallet_id");
+                Date transaction_date = res.getDate("transaction_date");
+                Double amount = res.getDouble("amount");
+                String note = res.getString("note");
+                transaction = new Transactions(id, account_id, budget_id, wallet_id, transaction_date, amount, note);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return transaction;
+    }
 
     public void addTransaction() {
         PreparedStatement preparedStatement = null;
@@ -102,6 +202,31 @@ public class Transactions {
 
             preparedStatement.executeUpdate();
             Log.i("Add transaction","Add transaction successful.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateTransaction(Transactions transaction) {
+        PreparedStatement preparedStatement = null;
+
+        try {
+            conn = connectDB.getConnection();
+            String query =  "UPDATE transactions" +
+                            "SET budget_id = ?, wallet_id = ?, transaction_date = ?, amount = ?, note = ?" +
+                            "WHERE id = ?";
+            preparedStatement = conn.prepareStatement(query);
+
+            preparedStatement.setInt(1, transaction.budget_id);
+            preparedStatement.setInt(2, transaction.wallet_id);
+            preparedStatement.setDate(3, transaction.transaction_date);
+            preparedStatement.setDouble(4, transaction.amount);
+            preparedStatement.setString(5, transaction.note);
+            preparedStatement.setInt(6, transaction.id);
+
+            preparedStatement.executeUpdate();
+            Log.i("Update transaction", "Update transaction successful.");
 
         } catch (SQLException e) {
             e.printStackTrace();

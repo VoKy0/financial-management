@@ -27,7 +27,11 @@
         android:id="@+id/nav_transaction_ledger"
         android:name="com.example.financial_management_app.fragments.TransactionLedgerFragment"
         android:label="@string/menu_transaction_ledger"
-        tools:layout="@layout/fragment_transaction_ledger" />
+        tools:layout="@layout/fragment_transaction_ledger">
+        <action
+            android:id="@+id/action_TransactionFragment_to_TransactionDetailFragment"
+            app:destination="@id/nav_transaction_detail" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_wallet"
@@ -70,7 +74,24 @@
         android:id="@+id/nav_transaction"
         android:name="com.example.financial_management_app.fragments.TransactionFragment"
         android:label="@string/transaction"
-        tools:layout="@layout/fragment_transaction" />
+        tools:layout="@layout/fragment_transaction">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_transaction_detail"
+        android:name="com.example.financial_management_app.fragments.TransactionDetailFragment"
+        android:label="@string/transaction_detail"
+        tools:layout="@layout/fragment_transaction_detail">
+        <action
+            android:id="@+id/action_TransactionDetailFragment_to_EditTransactionFragment"
+            app:destination="@id/nav_edit_transaction" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_transaction"
+        android:name="com.example.financial_management_app.fragments.EditTransactionFragment"
+        android:label="@string/edit_transaction"
+        tools:layout="@layout/fragment_edit_transaction" />
 
     <fragment
         android:id="@+id/nav_overview"

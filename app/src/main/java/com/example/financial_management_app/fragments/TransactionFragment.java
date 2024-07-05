@@ -19,6 +19,7 @@ import com.example.financial_management_app.R;
 import com.example.financial_management_app.adapters.TransactionAdapter;
 import com.example.financial_management_app.adapters.WalletAdapter;
 import com.example.financial_management_app.databinding.FragmentTransactionBinding;
+import com.example.financial_management_app.models.Budgets;
 import com.example.financial_management_app.models.Transactions;
 import com.example.financial_management_app.models.Wallets;
 import com.example.financial_management_app.viewmodels.TransactionViewModel;
@@ -60,6 +61,13 @@ public class TransactionFragment extends Fragment {
                 transactionAdapter = new TransactionAdapter(getActivity(), transactionItems);
                 listView.setAdapter(transactionAdapter);
             }
+        });
+
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            Transactions selectedTransaction = (Transactions) transactionAdapter.getItem(position);
+            Bundle bundle = new Bundle();
+            bundle.putInt("transaction_id", selectedTransaction.getID());
+            Navigation.findNavController(view).navigate(R.id.action_TransactionFragment_to_TransactionDetailFragment, bundle);
         });
 
         fab.setOnClickListener(new View.OnClickListener() {

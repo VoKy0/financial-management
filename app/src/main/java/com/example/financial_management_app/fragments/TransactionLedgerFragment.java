@@ -2,6 +2,7 @@ package com.example.financial_management_app.fragments;
 
 import static androidx.fragment.app.FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -24,20 +25,24 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class TransactionLedgerFragment extends Fragment {
-    private FragmentTransactionLedgerBinding binding;
+    private TransactionLedgerViewModel mViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        TransactionLedgerViewModel transactionLedgerViewModel =
-                new ViewModelProvider(this).get(TransactionLedgerViewModel.class);
+        return inflater.inflate(R.layout.fragment_transaction_ledger, container, false);
+    }
 
-        binding = FragmentTransactionLedgerBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        setupViewPager(binding.viewPager);
-        binding.tabLayout.setupWithViewPager(binding.viewPager);
+        mViewModel = new ViewModelProvider(this).get(TransactionLedgerViewModel.class);
 
-        return root;
+        ViewPager viewPager = view.findViewById(R.id.viewPager);
+        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
+
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -45,11 +50,5 @@ public class TransactionLedgerFragment extends Fragment {
         adapter.addFragment(new OverviewFragment(), "Tổng quan");
         adapter.addFragment(new TransactionFragment(), "Giao dịch");
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 }
