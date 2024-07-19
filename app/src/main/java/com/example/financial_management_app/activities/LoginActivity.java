@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +55,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private TextView signup;
 
+    private ImageView togglePassword;
+    private boolean isPasswordVisible = false;
+
+
 
     private static final int RC_SIGN_IN = 9001;
     private GoogleSignInClient mGoogleSignInClient;
@@ -74,6 +80,22 @@ public class LoginActivity extends AppCompatActivity {
         loginNotification = findViewById(R.id.login_notification);
         btnLogin = (Button) findViewById(R.id.btn_login);
         signup = findViewById(R.id.signup);
+
+        // Xử lý ẩn/hiện mật khẩu
+        togglePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isPasswordVisible) {
+                    edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    togglePassword.setImageResource(R.drawable.ic_eye_off);
+                } else {
+                    edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    togglePassword.setImageResource(R.drawable.ic_eye_on);
+                }
+                edtPassword.setSelection(edtPassword.getText().length());
+                isPasswordVisible = !isPasswordVisible;
+            }
+        });
 
 
         // Configure sign-in to request the user's ID, email address, and basic profile.

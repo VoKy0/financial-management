@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.financial_management_app.R;
@@ -27,6 +29,13 @@ public class ChangePasswordFragment extends Fragment {
     private EditText edt_new_password;
     private EditText edt_re_new_password;
     private Button btn_change_password;
+
+    private ImageView toggle_old_password;
+    private ImageView toggle_new_password;
+    private ImageView toggle_re_new_password;
+    private boolean isOldPasswordVisible = false;
+    private boolean isNewPasswordVisible = false;
+    private boolean isReNewPasswordVisible = false;
 
     public static ChangePasswordFragment newInstance() {
         return new ChangePasswordFragment();
@@ -45,6 +54,10 @@ public class ChangePasswordFragment extends Fragment {
         edt_new_password = view.findViewById(R.id.edt_new_password);
         edt_re_new_password = view.findViewById(R.id.edt_re_new_password);
         btn_change_password = (Button) view.findViewById(R.id.btn_change_password);
+
+        toggle_old_password = view.findViewById(R.id.toggle_old_password);
+        toggle_new_password = view.findViewById(R.id.toggle_new_password);
+        toggle_re_new_password = view.findViewById(R.id.toggle_re_new_password);
 
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         int account_id = getAccountIdFromSharedPreferences();
@@ -75,6 +88,27 @@ public class ChangePasswordFragment extends Fragment {
                     }
                 });
             }
+        });
+
+        toggle_old_password.setOnClickListener(v -> {
+            isOldPasswordVisible = !isOldPasswordVisible;
+            edt_old_password.setInputType(isOldPasswordVisible ? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            edt_old_password.setSelection(edt_old_password.length());
+            toggle_old_password.setImageResource(isOldPasswordVisible ? R.drawable.ic_eye_on : R.drawable.ic_eye_off);
+        });
+
+        toggle_new_password.setOnClickListener(v -> {
+            isNewPasswordVisible = !isNewPasswordVisible;
+            edt_new_password.setInputType(isNewPasswordVisible ? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            edt_new_password.setSelection(edt_new_password.length());
+            toggle_new_password.setImageResource(isNewPasswordVisible ? R.drawable.ic_eye_on : R.drawable.ic_eye_off);
+        });
+
+        toggle_re_new_password.setOnClickListener(v -> {
+            isReNewPasswordVisible = !isReNewPasswordVisible;
+            edt_re_new_password.setInputType(isReNewPasswordVisible ? InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            edt_re_new_password.setSelection(edt_re_new_password.length());
+            toggle_re_new_password.setImageResource(isReNewPasswordVisible ? R.drawable.ic_eye_on : R.drawable.ic_eye_off);
         });
     }
 
