@@ -10,9 +10,12 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface TransactionRoute {
-    @GET("/get")
+    @GET("/transaction/get")
     Call<List<Transactions>> getTransactions();
 
-    @POST("/create")
+    @POST("/transaction/create")
     Call<Transactions> createTransaction(@Body Transactions transaction);
+
+    @POST("/transaction/edit")
+    Call<Transactions> updateTransaction(@Body Transactions transaction);
 }

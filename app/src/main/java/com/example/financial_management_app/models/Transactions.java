@@ -26,7 +26,9 @@ public class Transactions {
     public Transactions() {
         id = -1;
         account_id = -1;
-        transaction_date = null;
+        budget_id= -1;
+        wallet_id = -1;
+        transaction_date = new Date(2024, 1, 1);
         amount = 0.0;
         note = "";
         connectDB = new ConnectDB();
