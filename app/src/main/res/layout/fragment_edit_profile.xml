@@ -228,13 +228,13 @@
     </RelativeLayout>
 
     <!-- Save Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save_profile"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lưu"
-        android:background="@drawable/rounded_button"
         android:textColor="#FFFFFF"
-        android:layout_gravity="center_horizontal" />
+        android:background="@drawable/btn_gradient_background"
+        android:layout_marginTop="24dp" />
 
 </LinearLayout>
