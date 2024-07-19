@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static final String BASE_URL = "https://fmapp.example.com";
+    private static final String BASE_URL = "https://192.168.1.11:8080/";
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {

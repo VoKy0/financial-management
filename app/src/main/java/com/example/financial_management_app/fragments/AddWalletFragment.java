@@ -56,7 +56,6 @@
 
             mViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
 
-            res = view.findViewById(R.id.tv_res);
 
             btn_create_wallet.setOnClickListener(new View.OnClickListener() {
                 @Override

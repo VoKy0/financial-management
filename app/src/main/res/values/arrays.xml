@@ -6,4 +6,11 @@
         <item>Ví tiết kiệm</item>
         <item>Ví liên kết</item>
     </string-array>
+
+    <string-array name="select_wallet_categories">
+        <item>Tất cả các ví</item>
+        <item>Ví cơ bản</item>
+        <item>Ví tiết kiệm</item>
+        <item>Ví liên kết</item>
+    </string-array>
 </resources>
