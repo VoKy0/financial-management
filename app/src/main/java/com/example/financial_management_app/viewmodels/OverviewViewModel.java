@@ -4,15 +4,61 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class OverviewViewModel extends ViewModel {
-    private MutableLiveData<String> mText;
+    private MutableLiveData<String> income;
+    private MutableLiveData<String> expense;
+    private MutableLiveData<String> finalResult;
+    private MutableLiveData<List<BarEntry>> barChartData;
+    private MutableLiveData<List<PieEntry>> pieChartData;
 
     public OverviewViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is the overview fragment");
+        income = new MutableLiveData<>();
+        expense = new MutableLiveData<>();
+        finalResult = new MutableLiveData<>();
+        barChartData = new MutableLiveData<>();
+        pieChartData = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<String> getIncome() {
+        return income;
+    }
+
+    public LiveData<String> getExpense() {
+        return expense;
+    }
+
+    public LiveData<String> getFinalResult() {
+        return finalResult;
+    }
+
+    public LiveData<List<BarEntry>> getBarChartData() {
+        return barChartData;
+    }
+
+    public LiveData<List<PieEntry>> getPieChartData() {
+        return pieChartData;
+    }
+
+    public void loadOverviewData() {
+        // Giả lập dữ liệu
+        income.setValue("100.000 đ");
+        expense.setValue("50.000 đ");
+        finalResult.setValue("50.000 đ");
+
+        List<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(0, 100000));
+        barEntries.add(new BarEntry(1, 50000));
+        barChartData.setValue(barEntries);
+
+        List<PieEntry> pieEntries = new ArrayList<>();
+        pieEntries.add(new PieEntry(100000, "Income"));
+        pieEntries.add(new PieEntry(50000, "Expense"));
+        pieChartData.setValue(pieEntries);
     }
 }

@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.financial_management_app.R;
 import com.example.financial_management_app.adapters.TransactionAdapter;
@@ -32,6 +34,9 @@ public class TransactionFragment extends Fragment {
     private TransactionViewModel mViewModel;
     private ListView listView;
     private TransactionAdapter transactionAdapter;
+    private ViewPager viewPager;
+    private AppCompatButton reportButton;
+    private FloatingActionButton fab;
 
     public static TransactionFragment newInstance() {
         return new TransactionFragment();
@@ -47,7 +52,8 @@ public class TransactionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FloatingActionButton fab = view.findViewById(R.id.fab_transaction);
+        fab = view.findViewById(R.id.fab_transaction);
+        reportButton = view.findViewById(R.id.report_btn);
 
 
         listView = view.findViewById(R.id.transaction_list_view);
@@ -77,5 +83,12 @@ public class TransactionFragment extends Fragment {
                 navController.navigate(R.id.nav_add_transaction);
             }
         });
+
+        reportButton.setOnClickListener(v -> navigateToOverviewFragment());
+    }
+
+    private void navigateToOverviewFragment() {
+        viewPager = getActivity().findViewById(R.id.viewPager);
+        viewPager.setCurrentItem(0);
     }
 }
