@@ -16,9 +16,9 @@ public class BudgetNameAdapter extends BaseAdapter {
     private Context context;
     private List<Budgets> budget;
 
-    public BudgetNameAdapter(Context context, List<Budgets> wallet) {
+    public BudgetNameAdapter(Context context, List<Budgets> budget) {
         this.context = context;
-        this.budget = wallet;
+        this.budget = budget;
     }
 
     @Override
@@ -44,7 +44,12 @@ public class BudgetNameAdapter extends BaseAdapter {
 
         Budgets budget = (Budgets) getItem(position);
         TextView nameTextView = convertView.findViewById(R.id.budget_item_name);
-        nameTextView.setText(budget.getName());
+
+        if (budget != null) {
+            nameTextView.setText(budget.getName());
+        } else {
+            nameTextView.setText(""); // Nếu budgetItem null, hiển thị một chuỗi rỗng
+        }
 
         return convertView;
     }

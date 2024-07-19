@@ -44,9 +44,7 @@ public class EditBudgetFragment extends Fragment {
     private EditText edt_budget_note;
     private TextView res_budget_date;
     private Spinner spn_wallet_name;
-    private LinearLayout date_layout;
     private Date budget_date;
-    private List<Wallets> wallets;
     private int selected_wallet_id;
 
 
@@ -68,7 +66,6 @@ public class EditBudgetFragment extends Fragment {
         edt_budget_note = view.findViewById(R.id.edt_budget_note);
         res_budget_date = view.findViewById(R.id.res_budget_date);
         spn_wallet_name = view.findViewById(R.id.spn_wallet_name);
-        date_layout = view.findViewById(R.id.date_layout);
 
         FloatingActionButton fab_save_budget = view.findViewById(R.id.fab_save_budget);
 
@@ -123,7 +120,7 @@ public class EditBudgetFragment extends Fragment {
             }
         });
 
-        date_layout.setOnClickListener(new View.OnClickListener() {
+        res_budget_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();

@@ -47,8 +47,6 @@ public class AddBudgetFragment extends Fragment {
     private TextView res_budget_date;
     private Spinner spn_wallets;
     private Button btn_create_budget;
-    private LinearLayout date_layout;
-    private TextView res;
     private int selected_wallet_id = -1;
     private Date budget_date;
 
@@ -72,13 +70,11 @@ public class AddBudgetFragment extends Fragment {
         res_budget_date = view.findViewById(R.id.res_budget_date);
         spn_wallets = view.findViewById(R.id.spn_wallets);
         btn_create_budget = (Button) view.findViewById(R.id.btn_create_budget);
-        date_layout = view.findViewById(R.id.date_layout);
 
         mViewModel = new ViewModelProvider(this).get(BudgetLedgerViewModel.class);
         walletViewModel = new ViewModelProvider(this).get(WalletViewModel.class);
 
-        res = view.findViewById(R.id.tv_res);
-        date_layout.setOnClickListener(new View.OnClickListener() {
+        res_budget_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
