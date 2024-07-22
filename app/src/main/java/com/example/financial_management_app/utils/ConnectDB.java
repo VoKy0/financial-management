@@ -16,7 +16,7 @@ public class ConnectDB {
 
     public Connection getConnection() {
         Connection connection = null;
-        String url = "jdbc:mysql://192.168.1.14:3306/financial_management_db";
+        String url = "jdbc:mysql://192.168.1.12:3306/financial_management_db";
         String user = "fm_app";
         String password = "123123";
 

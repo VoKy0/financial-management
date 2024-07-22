@@ -4,7 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
@@ -14,8 +18,8 @@ public class OverviewViewModel extends ViewModel {
     private MutableLiveData<String> income;
     private MutableLiveData<String> expense;
     private MutableLiveData<String> finalResult;
-    private MutableLiveData<List<BarEntry>> barChartData;
-    private MutableLiveData<List<PieEntry>> pieChartData;
+    private MutableLiveData<BarData> barChartData;
+    private MutableLiveData<PieData> pieChartData;
 
     public OverviewViewModel() {
         income = new MutableLiveData<>();
@@ -37,11 +41,11 @@ public class OverviewViewModel extends ViewModel {
         return finalResult;
     }
 
-    public LiveData<List<BarEntry>> getBarChartData() {
+    public LiveData<BarData> getBarChartData() {
         return barChartData;
     }
 
-    public LiveData<List<PieEntry>> getPieChartData() {
+    public LiveData<PieData> getPieChartData() {
         return pieChartData;
     }
 
@@ -54,11 +58,15 @@ public class OverviewViewModel extends ViewModel {
         List<BarEntry> barEntries = new ArrayList<>();
         barEntries.add(new BarEntry(0, 100000));
         barEntries.add(new BarEntry(1, 50000));
-        barChartData.setValue(barEntries);
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Data");
+        BarData barData = new BarData(barDataSet);
+        barChartData.setValue(barData);
 
         List<PieEntry> pieEntries = new ArrayList<>();
         pieEntries.add(new PieEntry(100000, "Income"));
         pieEntries.add(new PieEntry(50000, "Expense"));
-        pieChartData.setValue(pieEntries);
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "Data");
+        PieData pieData = new PieData(pieDataSet);
+        pieChartData.setValue(pieData);
     }
 }

@@ -81,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btn_login);
         signup = findViewById(R.id.signup);
 
+        togglePassword = (ImageView) findViewById(R.id.toggle_password);
+
         // Xử lý ẩn/hiện mật khẩu
         togglePassword.setOnClickListener(new View.OnClickListener() {
             @Override
